@@ -1,0 +1,1 @@
+puts "Exception handling is code that you write to handle any potential problems your code may encounter, such as data errors, problems with getting data, etc. This helps your code to continue to operate, rather than grind to a halt." 
