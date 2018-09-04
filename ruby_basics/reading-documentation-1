@@ -1,0 +1,59 @@
+1. Where to Find Documentation
+Q: Where can you find the most complete Ruby documentation?
+A: The most complete Ruby documentation can be found at http://ruby-doc.org/
+The documentation for all of the core features of the language can be found at http://ruby-doc.org/core-2.5.1/
+Documentation for libraries that are added on as part of the standard library can be found at http://ruby-doc.org/stdlib-2.5.1/
+
+2.while Loops
+Q: Locate the description of the while loop in the ruby documentation.
+A: The description of the while loop can be found in the ruby core documentation, in the documentation about syntax: http://ruby-doc.org/core-2.5.1/doc/syntax/control_expressions_rdoc.html
+
+3. Return Value of while
+Q: Using the ruby documentation, determine what value a while loop returns.
+A: A while loop returns nil unless break supplies a value.
+
+4. Return Value of break
+Q: In the previous exercise, you learned that the while loop returns nil unless break is used. Locate the documentation for break, and determine what value break sets the return value to for the while loop.
+A: If there's a value, break returns that value. If there's no value, break returns nil.
+
+5. Large Numbers
+Q: Using the ruby documentation, determine how you can write large numbers in a way that makes them easier to read.
+A: This answer is found in the literals doc. You can write large numbers that are more readable for humans by adding an underscore anywhere in the number. This is true both for integers and floating point numbers, as well for numbers written in hexadecimal, octal, decimal, and binary.
+Further exploration answer: Yes, it is ok to write the number above as 19_87_65_4321 - the underscores can go anywhere.
+
+6. Symbol Syntax
+Q: Using the ruby documentation, determine how you would write a Symbol that represents your name. We aren't looking for a String; we want a Symbol, which is one of ruby's datatypes.
+A: This answer is found in the literals doc. Reference a symbol by using a colon: :trip.
+
+7. Default Arguments in the Middle
+Q: Consider the following method and a call to that method:
+
+def my_method(a, b = 2, c = 3, d)
+  p [a, b, c, d]
+end
+
+my_method(4, 5, 6)
+Use the ruby documentation to determine what this code will print.
+A: This answer is found in the calling method doc. Arguments with defaults must be grouped together. Arguments are positional, which means they are used in the order that they appear. Ruby fills in the missing arguments from left to right. Positional arguments are filled out first, then default values are used.
+The order the arguments would be filled:
+a = 4
+d = 6
+b = 5
+c = 3
+Therefore, the method would print out [4, 5, 3, 6]
+
+8. String Class
+Q: Lets move on now to the documentation you will use most often; the core API section on Classes and Modules. All of these are listed under Classes on the Core API page.
+
+Locate and open the class documentation for the String class.
+
+A: String class documentation can be found on the Core page, under Classes, or directly here: http://ruby-doc.org/core-2.5.1/String.html
+
+9. Right Justifying Strings
+Q: Use the ruby documentation for the String class to determine which method can be used to right justify a String object.
+A: The rjust method will right justify a string if the integer argument is greater than the length of the string.
+
+10. Class and Instance Methods
+Q: Locate the ruby documentation for methods File::path and File#path. How are they different?
+A; File::path is a class method while File#path is an instance method.
+File::path returns string representation of a path. File#path returns pathname used to create file as a string.

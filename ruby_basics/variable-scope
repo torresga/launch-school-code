@@ -1,0 +1,22 @@
+1. a is 7 because my_value doesn't modify the value of a permanently (because numbers are not mutable).
+
+2. a is 7 because a is a different variable (methods create a different scope)
+
+3. a is still 7 because a and a inside my_value are two different variables. my_value is a method that creates scope. a outside of my_value is a different scope. variables outside of a method cannot see variables inside of the method.
+
+4. a is "Xy-zy" because strings are mutable. also we are mutating one character in a string and not reassigning a variable.
+
+5. a is "Xyzzy" because of variable scope (inside of my_value and outside of my_value are two different scopes that can't see each other) also this is assignment and not mutation
+
+Assignment does not mutate the object that is referenced, it replaces the reference to a new object.
+
+6. This raises an error because a is not defined in the my_value method. This is due to scope - variables outside of methods cannot be seen inside of methods.
+
+7. a will be 3 because blocks are able to see and modify local variables outside of blocks
+
+8. undefined local variable a? Because variables created inside of blocks cannot be seen outside of blocks.
+
+9. a is 7 because a inside the block is a different a that can't be seen outside of the block
+
+10. my_value(array) is going to return an error because methods cannot see variables outside of the method. inside the block, a += b is short for a = a + b and a is not defined.
+puts a will still return 7
