@@ -1,0 +1,84 @@
+1. Method that returns sum of two integers.
+
+Input: two integers
+Output: sum of integers
+
+Casual Pseudocode
+
+Given two integers.
+
+Create a variable to hold the sum value.
+
+Assign the addition of integer1 and integer2 to the sum variable.
+
+Return Sum.
+
+Formal Pseudocode
+
+START
+SET sum = 0
+sum = integer1 + integer2
+PRINT sum
+END
+
+2. A method that takes an array of strings and returns a string that is all those strings concatenated together.
+
+Input: array of strings
+Output: string of concatenated strings
+
+Given a collection of strings.
+
+Create a variable for resulting string.
+
+Iterate over collection of strings.
+For each element of collection
+  Append current string to resulting string
+
+Return resulting string
+
+Formal Pseudocode
+
+Given a collection of strings.
+
+START
+SET result = ""
+SET space = 1
+WHILE space < length of collection
+  current_element = current collection element
+  append current_element to result
+  space = space + 1
+
+PRINT result
+END
+
+3. A method that takes an array of integers and returns a new array with every other element.
+
+Input: Array of integers
+Output: New array with every other element
+
+Given a collection of integers.
+
+Create a new variable for resulting collection.
+
+Iterate over collection of integers
+For each element of collection
+  if element's space is even
+   skip element
+  else add element to new collection
+
+Return new collection
+
+Formal Pseudocode
+
+Given a collection of integers.
+SET new_numbers = []
+SET iterator = 1
+WHILE iterator < length of old collection
+  current_number = current collection element
+  IF iterator is even
+    skip
+  ELSE
+    append current_number to new_numbers
+
+PRINT new_numbers
+END
