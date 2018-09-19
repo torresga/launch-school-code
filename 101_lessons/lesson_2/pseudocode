@@ -79,6 +79,7 @@ WHILE iterator < length of old collection
     skip
   ELSE
     append current_number to new_numbers
+  iterator = iterator + 1
 
 PRINT new_numbers
 END
