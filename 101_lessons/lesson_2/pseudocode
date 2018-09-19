@@ -62,7 +62,7 @@ Create a new variable for resulting collection.
 
 Iterate over collection of integers
 For each element of collection
-  if element's space is even
+  if element's space is odd
    skip element
   else add element to new collection
 
@@ -75,7 +75,7 @@ SET new_numbers = []
 SET iterator = 1
 WHILE iterator < length of old collection
   current_number = current collection element
-  IF iterator is even
+  IF iterator is odd
     skip
   ELSE
     append current_number to new_numbers
