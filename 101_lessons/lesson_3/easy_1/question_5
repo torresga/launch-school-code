@@ -1,0 +1,6 @@
+(10..100).include?(42)
+
+LS ANSWER:
+(10..100).cover?(42)
+
+Difference between the two is that cover returns true if obj is between the beginning and end of the range. Include returns true if obj is an element of the range.
