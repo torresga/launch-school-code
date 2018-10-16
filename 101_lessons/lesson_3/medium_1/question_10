@@ -1,0 +1,9 @@
+bar(foo)
+
+Foo is called with no arguments. Foo is defined with a default parameter which is assigned the string "no".
+
+However, foo returns "yes", which is the same as bar("yes")
+
+"yes" == "no" is false, so it returns "no"
+
+bar(foo) returns "no"

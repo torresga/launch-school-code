@@ -1,0 +1,3 @@
+Yes, the Munster family data was modified because each element in a hash is mutable.
+
+I guess what also comes into play is the fact that the actual Munsters hash was passed in as an argument to the mess_with_demographics method, not a copy. 
