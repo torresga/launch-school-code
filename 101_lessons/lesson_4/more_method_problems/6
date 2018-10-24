@@ -1,0 +1,26 @@
+flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+
+1. Using #map
+flintstones.map! {|name| name[0,3]}
+
+2. Using a loop
+counter = 0
+
+loop do
+  current = flintstones[counter]
+  flintstones[counter] = current[0,3]
+  counter += 1
+  break if counter == flintstones.size
+end
+
+3. Using #each_with_index
+flintstones.each_with_index do |name, index|
+  flintstones[index] = name[0, 3]
+end
+
+4. Using #each
+counter = 0
+flintstones.each do |name|
+  flintstones[counter] = name[0,3]
+  counter += 1
+end
