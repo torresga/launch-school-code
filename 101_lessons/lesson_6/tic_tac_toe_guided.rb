@@ -6,14 +6,17 @@ WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+TOTAL_WINS = 5
 
 def prompt(msg)
   puts "=> #{msg}"
 end
 
-def display_board(brd)
+def display_board(brd, scores)
+  user_score, computer_score = scores
   system 'clear'
   puts "You're a #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}"
+  prompt("User score: #{user_score} Computer score: #{computer_score}")
   puts ""
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
@@ -40,7 +43,7 @@ def empty_squares(brd)
   brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
-def player_places_piece!(brd)
+def get_user_move(brd)
   square = ''
   loop do
     prompt("Choose a square: #{joinor(empty_squares(brd))}:")
@@ -48,12 +51,55 @@ def player_places_piece!(brd)
     break if empty_squares(brd).include?(square)
     prompt("Sorry, that's not a valid choice.")
   end
-
-  brd[square] = PLAYER_MARKER
+  square
 end
 
-def computer_places_piece!(brd)
-  square = empty_squares(brd).sample
+def player_places_piece!(brd, used_sqrs)
+  square = get_user_move(brd)
+  brd[square] = PLAYER_MARKER
+  used_sqrs.push(square)
+end
+
+def computer_defense_moves(brd, used_sqrs)
+  # This works only if there's two of the player pieces in a row.
+  # And on the first iteration, almost full_lines returns an empty array
+
+  # get user move
+  # find the square closest to it, by picking from a list of closest_coordinates
+  user_square = used_sqrs.last
+  computer_square = 0
+  loop do
+    close_coordinates = [1, -1, 3, -3, 4, -4]
+    computer_square = user_square + close_coordinates.sample
+    break if computer_square > 0 && computer_square < 10
+  end
+  # Add another loop - computer square also has to be empty
+  computer_square
+end
+
+  # find the key that holds the x,
+  # player_moves = brd.select { |_, v| v == PLAYER_MARKER }.keys
+
+  # if player_moves => [1]
+  # We should get => [2, 4, 5]
+  # if player_moves => [1, 2]
+  # We should get => [3]
+
+
+
+  # search in WINNING_LINES for that number,
+  # and return a flattened array of all arrays that have that number.
+  # almost_full_lines = WINNING_LINES.select do |line|
+  #   brd.values_at(*line).count(PLAYER_MARKER) == 2
+  # end
+  #
+  # almost_full_lines.flatten!
+  # almost_full_lines.select {|elem| brd[elem] == INITIAL_MARKER }
+
+
+def computer_places_piece!(brd, used_sqrs)
+  # this returns nil when computer_defense_moves is an empty array
+  square = computer_defense_moves(brd, used_sqrs)
   brd[square] = COMPUTER_MARKER
 end
 
@@ -96,14 +142,17 @@ def joinor(arr, delimeter=',', joining_word='or')
   joined_string
 end
 
+loop do
+  user_score = 0
+  computer_score = 0
+  game_winner = ''
+  used_squares = []
 
-user_score = 0
-computer_score = 0
 loop do
   board = initialize_board
 
   loop do
-    display_board(board)
+    display_board(board, [user_score, computer_score])
 
     player_places_piece!(board)
     break if someone_won?(board) || board_full?(board)
@@ -112,25 +161,29 @@ loop do
     break if someone_won?(board) || board_full?(board)
   end
 
-  display_board(board)
+  display_board(board, [user_score, computer_score])
 
   if someone_won?(board)
-    if detect_winner(board) == "Player"
+    winner = detect_winner(board)
+    if winner == "Player"
       user_score += 1
     else
       computer_score += 1
     end
-    prompt("#{detect_winner(board)} won!")
-  else
-    prompt("It's a tie!")
   end
 
-  prompt("User score: #{user_score} Computer score: #{computer_score}")
-
-  # prompt("Play again? (y or n)")
-  # answer = gets.chomp
-  # break unless answer.downcase.start_with?('y')
-  break if user_score == 5 || computer_score == 5
+  if user_score == TOTAL_WINS
+    game_winner = "Player"
+    break
+  elsif computer_score == TOTAL_WINS
+    game_winner = "Computer"
+    break
+  end
 end
 
-prompt("Thanks for playing Tic Tac Toe! Goodbye.")
+prompt "#{game_winner} wins the game!"
+prompt "Play again?"
+answer = gets.chomp
+break unless answer.downcase.start_with?('y')
+prompt "Thank you for playing Tic-Tac-Toe! Goodbye!"
+end
