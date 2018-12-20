@@ -21,11 +21,28 @@
 # Stay means don't ask for another card
 #
 # Player is user. Dealer is computer.
-# Dealer hits (asks for another card) until total is at least 17. If dealer's total is >= 17 and dealer has not busted, then dealer stays.
+# Dealer hits (asks for another card) until total is at least 17.
+# If dealer's total is >= 17 and dealer has not busted, then dealer stays.
 #
 # Then compare cards and determine who has the highest value.
 
 # Create examples/test cases
+
+# pp numerical_values(["Ace", "Ace","10"]) # should be [1, 1, 10]
+# pp numerical_values(["2", "3", "Ace"]) # [2, 3, 11]
+# pp numerical_values(["2", "Ace", "Ace"]) #=> [2, 11, 1]
+# pp numerical_values(["2", "Ace", "10", "Ace"]) #=> [2, 1, 10, 1]
+# pp numerical_values(["2", "Ace", "Ace", "10"]) # [2, 1, 1, 10]
+# pp numerical_values(["10", "Ace", "Ace"]) #[10, 1, 1]
+# pp numerical_values(["Ace", "Ace"]) # [11, 1]
+# pp numerical_values(["Ace", "Ace", "Ace"]) #[11, 1, 1]
+# pp numerical_values(["Ace", "Ace", "Ace", "10"]) #[1, 1, 1, 10]
+# pp numerical_values(["Ace", "Ace","9"]) #[11, 1, 9]
+# pp numerical_values(["Ace", "10"]) #This last one should be [11, 10]
+# pp numerical_values(["10", "Ace"]) #This last one should be [10, 11]
+# pp numerical_values(["Jack", "Queen", "King"])
+# pp numerical_values(["Ace", "Ace"])
+
 
 # Data Structures
 # Deck - probably hash
@@ -37,7 +54,9 @@
 # How do we initialize a deck? Should the deck be in some sort of order?
 # Or should we pick random cards for each person and remove those from the deck?
 
-# You start with a normal 52-card deck consisting of the 4 suits (hearts, diamonds, clubs, and spades), and 13 values (2, 3, 4, 5, 6, 7, 8, 9, 10, jack, queen, king, ace).
+# It starts with a normal 52-card deck consisting of the 4 suits
+# (hearts, diamonds, clubs, and spades), and 13 values
+# (2, 3, 4, 5, 6, 7, 8, 9, 10, jack, queen, king, ace).
 
 # Algorithm
 # 1. Initialize deck
@@ -66,7 +85,7 @@ VALUES = {
   "3" => 3,
   "4" => 4,
   "5" => 5,
-  "6"=> 6,
+  "6" => 6,
   "7" => 7,
   "8" => 8,
   "9" => 9,
@@ -85,13 +104,13 @@ VALUES = {
 # ace, ace - first is 11, second is 1
 # ace, ace, ace - first is 11, next two are 1
 # ace, ace, ace, ace - first is 11, next three are 1
-# if you remove the aces, and the rest of the numbers's sum is <= 10, then first ace is 11 and any remaining ones are 1
+# if you remove the aces, and the rest of the numbers's sum
+# is <= 10, then first ace is 11 and any remaining ones are 1
 # else, aces are 1
 
-def numerical_values(cards)
-  # we need an array with all the actual card values
+def values(cards)
   card_values = cards.map { |card| VALUES[card] }
-  without_aces = card_values.select {|card| card != "Ace"}
+  without_aces = card_values.select { |card| card != "Ace" }
 
   ace_count = card_values.count("Ace")
 
@@ -113,35 +132,20 @@ def numerical_values(cards)
   card_values
 end
 
-# pp numerical_values(["Ace", "Ace","10"]) # should be [1, 1, 10]
-# pp numerical_values(["2", "3", "Ace"]) # [2, 3, 11]
-# pp numerical_values(["2", "Ace", "Ace"]) #=> [2, 11, 1]
-# pp numerical_values(["2", "Ace", "10", "Ace"]) #=> [2, 1, 10, 1]
-# pp numerical_values(["2", "Ace", "Ace", "10"]) # [2, 1, 1, 10]
-# pp numerical_values(["10", "Ace", "Ace"]) #[10, 1, 1]
-# pp numerical_values(["Ace", "Ace"]) # [11, 1]
-# pp numerical_values(["Ace", "Ace", "Ace"]) #[11, 1, 1]
-# pp numerical_values(["Ace", "Ace", "Ace", "10"]) #[1, 1, 1, 10]
-# pp numerical_values(["Ace", "Ace","9"]) #[11, 1, 9]
-# pp numerical_values(["Ace", "10"]) #This last one should be [11, 10]
-# pp numerical_values(["10", "Ace"]) #This last one should be [10, 11]
-# pp numerical_values(["Jack", "Queen", "King"])
-# pp numerical_values(["Ace", "Ace"])
-
 def total(cards)
-  numerical_values(cards).sum
+  values(cards).sum
 end
 
-def busted?(total)
-  total > 21
+def busted?(cards)
+  total(cards) > 21
 end
 
-def winner(player_cards, dealer_cards)
+def determine_winner(player_cards, dealer_cards)
   winner = if total(player_cards) > total(dealer_cards)
-            "Player"
-          else
-            "Dealer"
-          end
+             "Player"
+           else
+             "Dealer"
+           end
   winner
 end
 
@@ -165,7 +169,6 @@ puts "You have: #{player_cards.first} and #{player_cards.last}"
 winner = ''
 loop do
   answer = nil
-  player_total = 0
 
   loop do
     player_total = total(player_cards)
@@ -178,7 +181,7 @@ loop do
     puts "Your current cards: #{player_cards}"
   end
 
-  if busted?(player_total)
+  if busted?(player_cards)
     winner = 'Dealer'
     break
   else
@@ -186,7 +189,6 @@ loop do
   end
 
   # dealer's turn
-  dealer_total = 0
   loop do
     dealer_total = total(dealer_cards)
     break if dealer_total >= DEALER_TOTAL
@@ -196,11 +198,11 @@ loop do
   end
 
   # compare cards
-   winner = if busted?(dealer_total)
-            "Player"
-          else
-            winner(player_cards, dealer_cards)
-          end
+  winner = if busted?(dealer_cards)
+             "Player"
+           else
+             determine_winner(player_cards, dealer_cards)
+           end
   break
 end
 
