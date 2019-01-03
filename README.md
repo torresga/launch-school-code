@@ -4,13 +4,13 @@
 
 Good question. In a nutshell: LS is 'online school for developers' that focuses on mastering software engineering fundamentals. The belief is that by focusing on the fundamentals rather than frameworks, one can truly learn how to solve engineering problems.
 
-Interested in learning more? [Launch School] (http://www.launchschool.com)
+Interested in learning more? [Launch School](http://www.launchschool.com)
 
 ## Why I am doing it
 
 Because I had no other choice in order to get the kind of job I wanted.
 
-I have always wanted to be a programmer. I have also found programming immensely hard to get into as a career. For a long time I fell into the trap of learning 'just enough to get my foot in the door' as described in this article: [The Dangers of Learning Just Enough] (https://hackernoon.com/the-dangers-of-learning-just-enough-6b7d66393205)
+I have always wanted to be a programmer. I have also found programming immensely hard to get into as a career. For a long time I fell into the trap of learning 'just enough to get my foot in the door' as described in this article: [The Dangers of Learning Just Enough](https://hackernoon.com/the-dangers-of-learning-just-enough-6b7d66393205)
 
 I know a lot of self-taught programmers that found their way into the industry. I'm sure a lot of them used the 'learning just enough' to help them start their careers. I've gotten a lot of similar advice when I first started looking for developer jobs 3 years ago.
 
