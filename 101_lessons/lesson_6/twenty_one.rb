@@ -71,7 +71,9 @@
 
 # Code
 
+CARD_TOTAL = 21
 DEALER_TOTAL = 17
+WIN_COUNT = 5
 
 MASTER_DECK = {
   hearts: ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"],
@@ -136,23 +138,38 @@ def total(cards)
   values(cards).sum
 end
 
-def busted?(cards)
-  total(cards) > 21
+def busted?(total)
+  total > CARD_TOTAL
 end
 
-def determine_winner(player_cards, dealer_cards)
-  winner = if total(player_cards) > total(dealer_cards)
-             "Player"
-           else
-             "Dealer"
-           end
-  winner
+def determine_winner(player_total, dealer_total)
+  if player_total > dealer_total
+    "Player"
+  elsif player_total == dealer_total
+    "Tie"
+  else
+    "Dealer"
+  end
 end
 
-def display_winner(winner)
-  puts "#{winner} wins the game!"
+def display_winner(winner, type)
+  if winner == "Tie"
+    puts "It's a tie! Nobody wins!"
+  else
+    puts "#{winner} wins the #{type}!"
+  end
 end
 
+def play_again?
+  puts "Do you want to play again?"
+  answer = gets.chomp.downcase
+  true if answer.include?("y")
+end
+
+player_win_count = 0
+dealer_win_count = 0
+
+loop do
 # initialize deck
 current_deck = MASTER_DECK.values.flatten
 current_deck.shuffle!
@@ -161,34 +178,48 @@ current_deck.shuffle!
 player_cards = current_deck.shift(2)
 dealer_cards = current_deck.shift(2)
 
-puts "Dealer has: #{dealer_cards.sample} and unknown card"
-puts "You have: #{player_cards.first} and #{player_cards.last}"
+puts "\n"
+puts "WELCOME TO TWENTY ONE"
+puts "=============="
+puts "Player win count: #{player_win_count} Dealer win count: #{dealer_win_count}"
+puts "\n"
+puts "Dealer has: #{dealer_cards.first} and unknown card"
+puts "=============="
+puts "\n"
 
 # player turn - hit or stay
 # repeat until bust or stay
 winner = ''
+player_total = 0
+dealer_total = 0
+
 loop do
   answer = nil
 
   loop do
     player_total = total(player_cards)
-    puts "hit or stay?"
-    answer = gets.chomp
-    break if answer == 'stay' || busted?(player_total)
+
+    puts "\n"
+    puts "Your current cards: #{player_cards}"
+    puts "Your current total: #{player_total}"
+
+    print "Do you want to hit or stay? "
+    answer = gets.chomp.downcase
+    break if answer.include?('s') || busted?(player_total)
 
     new_card = current_deck.shift
     player_cards.push(new_card)
-    puts "Your current cards: #{player_cards}"
   end
 
-  if busted?(player_cards)
+  if busted?(player_total)
     winner = 'Dealer'
     break
   else
-    puts "You chose to stay!"
+    puts "\nYou chose to stay!"
   end
 
   # dealer's turn
+
   loop do
     dealer_total = total(dealer_cards)
     break if dealer_total >= DEALER_TOTAL
@@ -198,14 +229,31 @@ loop do
   end
 
   # compare cards
-  winner = if busted?(dealer_cards)
+  winner = if busted?(dealer_total)
              "Player"
            else
-             determine_winner(player_cards, dealer_cards)
+             determine_winner(player_total, dealer_total)
            end
   break
 end
 
-puts "Player's cards: #{player_cards}"
-puts "Dealer's cards: #{dealer_cards}"
-display_winner(winner)
+puts "\n"
+puts "GAME OVER"
+puts "=============="
+puts "Player's cards: #{player_cards} Final total: #{player_total}"
+puts "Dealer's cards: #{dealer_cards} Final total: #{dealer_total}"
+display_winner(winner, "round")
+puts "=============="
+
+if winner == "Player"
+  player_win_count += 1
+elsif winner == "Dealer"
+  dealer_win_count += 1
+end
+
+if player_win_count == WIN_COUNT || dealer_win_count == WIN_COUNT
+  display_winner(winner, "game")
+  break
+end
+
+end
