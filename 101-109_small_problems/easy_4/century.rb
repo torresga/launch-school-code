@@ -22,7 +22,7 @@
 # centuries start in years ending in 1. yet they are one more than the beginning two numbers.
 
 # years 1 to 99 is a special case. that is the first century
-
+#
 #
 # Create examples/test cases
 
@@ -42,18 +42,17 @@
 
 # Algorithm
 # Get Input
-# Create century variable
-# Split year into array
-# If array.length is < than 3
-# year_ending is 0
-# century is 1
-# remove ones and tens places from year and add to new variable year_ending
-# Create a new variable century_string
-# If year_ending is between 01 and 99
-# Increase century by 1
-# Add century to century_string
-# If century_string ends with 11, 12, or 13, append th
-# Else get ending from dictionary and append it to century_string
+# Determine Century
+#   Split year into array
+#   Remove ones and tens places from year
+#   Remaining numbers are century
+#   if year is between 1 and 99
+#     increase century by one
+
+# Create century string
+#   Add century to century string
+#   If century_string ends with 11, 12, or 13, append th
+#   Else get ending from dictionary and append it to century_string
 
 # Code
 
@@ -82,7 +81,7 @@ def get_century(year)
     century = "1"
   end
 
-  if year_ending.to_i >= 1 && year_ending.to_i <= 99
+  if year_ending.to_i > 0 && year_ending.to_i <= 99
     century.next!
   end
 
@@ -104,6 +103,7 @@ def century(year)
   century_string
 end
 
+puts century(0)
 puts century(2000) # == '20th'
 puts century(2001) # == '21st'
 puts century(1965) # == '20th'
