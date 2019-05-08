@@ -4,18 +4,9 @@
 
 prep_work: This is all the mandatory preparatory work I did before I started the paid portion of Launch School.
 
-* intro_to_programming: all the exercises to the [Introduction to Programming with Ruby](https://launchschool.com/books/ruby) book in the Launch School Open Book Shelf.
-* ruby_basics: Basic exercises focusing on Ruby syntax.
+lessons: All the coursework for the paid courses.
 
-101_lessons: Follow along coding exercises and assignments that I did for the lessons in Ruby 101.
-
-* lesson_2: Follow-along code and assignments from Lesson 2: Small Programs
-* lesson_3: Assignments from Lesson 3: Practice Problems
-* lesson_4: Assignments from Lesson 4: Ruby Collections
-* lesson_5: Assignments from Lesson 5: Advanced Ruby Collections
-* lesson_6: Follow along code and assignments from Lesson 6: Slightly Larger Programs
-
-101-109_small_problems: Solutions to the Small Problems exercises.
+exercises: All my exercise solutions.
 
 ## What is Launch School?
 
