@@ -1,7 +1,0 @@
-greetings will be {a: 'hi there'}
-
-This is because the line
-informal_greeting = greetings[:a]
-assigns a reference to the object in the value greetings[:a]
-then informal_greeting << ' there'
-modifies the object that both greetings[:a] and informal_greeting refer to, because the << method mutates its' caller.

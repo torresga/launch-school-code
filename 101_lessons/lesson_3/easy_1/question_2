@@ -1,8 +1,0 @@
-! is a stylistic convention in Ruby to denote that a method modifies its' caller. ? is a stylistic convention to denote that a method returns a boolean (true or false.)
-
-1. != means that one thing is not equal to another thing and you should use in comparisons.
-2. ! before something returns the boolean opposite to something.
-3. ! after something means that method is destructive.
-4. ? before something does not mean anything in Ruby (unless it's part of a ternary expression)
-5. ? after something is the ternary operator.
-6. !! before something returns the boolean opposite of the opposite to something.

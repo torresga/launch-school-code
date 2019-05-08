@@ -1,3 +1,0 @@
-greeting is equal to nil because if false defaults to false, therefore greeting is not assigned 'hello world', but is assigned 'nil'
-
-LS Answer: when you initialize a local variable within an if block, if that block doesn't get executed, the local variable is initialized to nil.

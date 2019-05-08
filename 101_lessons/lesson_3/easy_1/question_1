@@ -1,5 +1,0 @@
-I would expect numbers to print out [1, 2, 2, 3] because numbers.uniq does not mutate the caller. puts calls to_s on the array so that's why the output is
-1
-2
-2
-3

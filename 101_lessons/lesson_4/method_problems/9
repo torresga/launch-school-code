@@ -1,7 +1,0 @@
-According to the Ruby documentation, #map will return an array with the results of each block done to each element of the array.
-
-if value.size > 3 is false for first element of the array, so if returns nil
-
-if value.size > 3 is true for the second element so that statement is done to the second element.
-
-[nil, 'bear']

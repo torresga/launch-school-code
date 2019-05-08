@@ -1,4 +1,0 @@
-According to the Ruby docs, Hash#shift mutates a hash by removing a key-value pair from a hash and returns the pair as a two-item array (or the hash's default value if the hash is empty)
-
-So in the previous code, shift would remove the key-value pair {a: 'ant'}
-and return it as an array: [:a, 'ant'].

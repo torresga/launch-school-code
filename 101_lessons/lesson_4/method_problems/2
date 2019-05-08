@@ -1,5 +1,0 @@
-Count counts how many elements in the given array for which the block evaluate to true.
-
-LS Answer: Count considers the truthyness of the block's return value.
-
-By looking at the Ruby docs?

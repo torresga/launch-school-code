@@ -1,5 +1,0 @@
-In Ruby documentation, it says that reject returns a new array that contains the elements for which the given block is not true.
-
-puts num evaluates to nil
-
-and [1, 2, 3] are not nil, so reject in this case returns [1, 2, 3]
