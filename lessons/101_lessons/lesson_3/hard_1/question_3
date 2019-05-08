@@ -1,0 +1,60 @@
+A.
+def mess_with_vars(one, two, three)
+  # Assigns arguments to local variables that do not exist outside of the method.
+  # Returns last expression of method.
+  one = two
+  two = three
+  three = one
+end
+
+one = "one"
+two = "two"
+three = "three"
+
+# Returns 'two'
+mess_with_vars(one, two, three)
+
+puts "one is: #{one}" #=> prints "one"
+puts "two is: #{two}" #=> prints "two"
+puts "three is: #{three}" #=> prints "three"
+
+B.
+def mess_with_vars(one, two, three)
+  # Assigns values to local variables that do not exist outside of the method.
+  # Returns last expression of method.
+  one = "two"
+  two = "three"
+  three = "one"
+end
+
+one = "one"
+two = "two"
+three = "three"
+
+# Returns 'one'
+mess_with_vars(one, two, three)
+
+puts "one is: #{one}" #=> prints "one"
+puts "two is: #{two}" #=> prints "two"
+puts "three is: #{three}" #=> prints "three"
+
+C.
+def mess_with_vars(one, two, three)
+  # Assigns references to objects to local variables that do not exist outside of the method.
+  # These objects are mutated through the methods called on them (! indicates the method is mutative in this case).
+  # Returns last expression of method.
+  one.gsub!("one","two")
+  two.gsub!("two","three")
+  three.gsub!("three","one")
+end
+
+one = "one"
+two = "two"
+three = "three"
+
+# Returns "one"
+mess_with_vars(one, two, three)
+
+puts "one is: #{one}" #=> prints "two"
+puts "two is: #{two}" #=> prints "three"
+puts "three is: #{three}" #=> prints "one"

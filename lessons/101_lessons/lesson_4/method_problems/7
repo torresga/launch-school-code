@@ -1,0 +1,8 @@
+The block's return value is either true or false. This is because a block returns the result of the last expression, which in this cause is true or false because #odd? returns true or false.
+
+#any? returns true if one or more elements return true in the block. It stops evaluating the block and returns true on the first element that returns true.
+
+This code outputs
+1
+
+and returns true

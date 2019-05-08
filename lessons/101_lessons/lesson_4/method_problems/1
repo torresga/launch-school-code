@@ -1,0 +1,5 @@
+The return value of the select method is [1, 2, 3].
+
+Select evaluates the block for each element in the collection and returns whether the value of the last expression in the block is truthy.
+
+Since all values in Ruby are 'truthy' except for false and nil, this would mean that all of the elements in the array [1, 2, 3] would be returned because 'hi', the last expression of the block, evaluates to true.

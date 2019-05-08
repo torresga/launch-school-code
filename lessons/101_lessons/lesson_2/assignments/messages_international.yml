@@ -1,0 +1,74 @@
+- operations:
+    addition:
+      en: 'Adding'
+      fr: 'Ajouter'
+    subtraction:
+      en: 'Subtracting'
+      fr: 'Soustraire'
+    multiplication:
+      en: 'Multiplying'
+      fr: 'Multiplier'
+    division:
+      en: 'Dividing'
+      fr: 'Diviser'
+- salutations:
+    language: 'Please choose your language (en or fr)
+              Choisissez votre langue (en ou fr)'
+    welcome:
+      en: 'Welcome to Calculator! Enter your name:'
+      fr: 'Bienvenue à la calculatrice! Entrez votre nom:'
+    hello:
+      en: 'Hi'
+      fr: 'Bonjour'
+    goodbye:
+      en: 'Thank you for using the calculator. Good bye!'
+      fr: 'Merci pour utiliser la calculatrice. Au revoir!'
+- questions:
+    askingForNumbers:
+      en:
+        - "What's the first number?"
+        - "What's the second number?"
+      fr:
+        - "Quel est le premier numéro?"
+        - "Quel est le deuxième numéro?"
+    askingForOperator:
+      en: 'What operation would you like to perform?
+      1) add
+      2) subtract
+      3) multiply
+      4) divide'
+      fr: 'Quelle opération aimeriez-vous effectuer?
+      1) ajouter
+      2) soustraire
+      3) multiplier
+      4) diviser'
+    askingToCalculateAgain:
+      en: 'Do you want to perform another calculation? (Y to calculate again)'
+      fr: 'Voulez-vous effectuer une autre opération? (Appuyez sur o pour calculer à nouveau.)'
+- warnings:
+    invalidLanguage: "That's not a valid language. Please type 'en' or 'fr'
+                      Ça n'est pas une langue valide. S'il vous plaît appuyer 'en' ou 'fr'."
+    invalidName:
+      en: 'Make sure to use a valid name.'
+      fr: "Assurez-vous d'utiliser un nom valide."
+    invalidNumber:
+      en: "Hmm... that doesn't look like a valid number."
+      fr: 'Oof... ça ne ressemble pas à un nombre valide.'
+    invalidOperation:
+      en: 'Must choose 1, 2, 3, or 4'
+      fr: 'Vous devez choisir 1, 2, 3, ou 4'
+- answers:
+    addition: '1'
+    subtraction: '2'
+    multiplication: '3'
+    division: '4'
+    calculateAgain:
+      en: 'y'
+      fr: 'o'
+- display_results:
+    operating:
+      en: 'the two numbers...'
+      fr: 'les deux numéros..'
+    result:
+      en: 'The result is'
+      fr: 'Le résultat est'

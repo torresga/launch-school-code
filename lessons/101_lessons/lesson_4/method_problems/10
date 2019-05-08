@@ -1,0 +1,5 @@
+The return value of the following code is [1, nil, nil].
+
+#map does the block to each element of the array.
+
+if num > 1 evaluates to true for the last two elements of the array. However, puts num evaluates to nil because puts always returns nil.
