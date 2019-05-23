@@ -1,4 +1,105 @@
-
 Class and Instance Methods
-
 Locate the ruby documentation for methods File::path and File#path. How are they different?
+File::path is a class method. It is a method that is called on the File class. It takes a path and returns a string.
+
+File#path is an instance method. It is called on a File object and returns a new filename.
+
+Optional Arguments Redux
+Assume you have the following code:
+
+require 'date'
+
+puts Date.new
+Outputs a new Date object. Default year is -4712, default month is 1 and default day is 1.
+puts Date.new(2016)
+Outputs a new date object. Year is 2016, default month is 1 and default day is 1.
+puts Date.new(2016, 5)
+Outputs a new date object. Year is 2016, month is 5, and default day is 1.
+puts Date.new(2016, 5, 13)
+Outputs a new date object. Year is 2016, month is 5, and day is 13.
+What will each of the 4 puts statements print?
+
+Default Arguments in the Middle
+Consider the following method and a call to that method:
+
+def my_method(a, b = 2, c = 3, d)
+  p [a, b, c, d]
+end
+
+my_method(4, 5, 6)
+Use the ruby documentation to determine what this code will print.
+
+According to the Ruby documentation here:
+https://ruby-doc.org/core-2.6.3/doc/syntax/calling_methods_rdoc.html
+Ruby fills in the missing arguments from left to right.
+Therefore when we call my_method
+4 will be assigned to a
+5 will be assigned to b
+There is only one more argument left and c already has a default argument, so c will remain the default argument 3
+and then 6 will be assigned to d
+So then p [a, b, c, d] will output:
+[4, 5, 3, 6]
+
+Mandatory Blocks
+The Array#bsearch method is used to search ordered Arrays more quickly than #find and #select can. Assume you have the following code:
+
+a = [1, 4, 8, 11, 15, 19]
+How would you search this Array to find the first element whose value exceeds 8?
+a.bsearch {|x| x > 8 }
+
+Multiple Signatures
+What do each of these puts statements output?
+
+a = %w(a b c d e)
+puts a.fetch(7)
+This is going to output an IndexError: index 7 outside of array bounds
+puts a.fetch(7, 'beats me')
+This is going to output the second value, 'beats me' because it is the default value.
+puts a.fetch(7) { |index| index**2 }
+This is going to output 49. The block is only called when the index (7) is invalid.
+
+Keyword Arguments
+What does this code print?
+
+5.step(to: 10, by: 3) { |value| puts value }
+The code prints
+5
+8
+Step is a method called on Numeric. starts at the number it was called upon and increases by the argument reference by 'by' up to the number referenced by 'to'. Each number is passed into the block and the block is called.
+
+Parent Class
+Use irb to run the following code:
+
+s = 'abc'
+puts s.public_methods.inspect
+You should find that it prints a list of all of the public methods available to the String s; this includes not only those methods defined in the String class, but also methods that are inherited from Object (which inherits other methods from the BasicObject class and the Kernel module). That's a lot of methods.
+
+How would you modify this code to print just the public methods that are defined or overridden by the String class? That is, the list should exclude all members that are only defined in Object, BasicObject, and Kernel.
+
+According to the Ruby documentation, public_methods takes an optional argument 'all' that is true by default. When 'all' is false, only the methods of the calling object's class will be returned.
+puts s.public_methods(false)inspect
+
+Included Modules
+Use irb to run the following code:
+
+a = [5, 9, 3, 11]
+puts a.min(2)
+Find the documentation for the #min method and change the above code to print the two smallest values in the Array.
+
+Down the Rabbit Hole
+Sometimes, the documentation is going to leave you scratching your head.
+
+In a very early assignment at Launch School, you are tasked with writing a program that loads some text messages from a YAML file. We do this with YAML::load_file:
+
+require 'yaml'
+MESSAGES = YAML.load_file('calculator_messages.yml')
+Find the documentation for YAML::load_file.
+
+Reading the docs for the module YAML, is this:
+As the implementation is provided by the Psych library, detailed documentation can be found in that library's docs (also part of standard library).
+
+so while looking in the Psych module I found this:
+load_file(filename, fallback: false)
+Load the document contained in filename. Returns the yaml contained in filename as a Ruby object, or if the file is empty, it returns the specified fallback return value, which defaults to false.
+
+Psych is a module that is mixed into the Object class. YAML is an object that is mixed into the Object class.
