@@ -1,4 +1,5 @@
 require './move'
+require './input'
 
 class Player
   MAX_SCORE = 10
@@ -23,6 +24,8 @@ class Player
 end
 
 class Human < Player
+  include Input
+
   def set_name
     n = ""
     loop do
@@ -35,14 +38,12 @@ class Human < Player
   end
 
   def choose
-    choice = nil
-    loop do
-      puts "Please choose rock, paper, scissors, Spock, or lizard:"
-      choice = gets.chomp
-      break if Move::VALUES.include? choice
-      puts "Sorry, invalid choice."
-    end
-    # self.move = Move.new(choice)
+    messages = [
+      "Please choose rock, paper, scissors, Spock, or lizard:",
+      "Sorry, invalid choice."
+    ]
+
+    choice = get_input(messages, Move::VALUES)
     self.move = Object.const_get(choice.capitalize).new(choice)
   end
 end
@@ -55,7 +56,7 @@ class Computer < Player
     'Hal' => [0.0, 0.5, 0.4, 0.1, 0.0],
     'Chappie' => [0.1, 0.1, 0.1, 0.6, 0.1],
     'Sonny' => [0.3, 0.3, 0.2, 0.1, 0.2],
-    'Number 5' => [0.4, 0.3, 0.2, 0.1]
+    'Number 5' => [0.3, 0.3, 0.2, 0.1, 0.1]
   }
 
   def set_name
@@ -63,9 +64,9 @@ class Computer < Player
   end
 
   def choose
-    # Then in here we can do this
     # Create a hash with each move as a key, each frequency as a value
-    # Then we can loop over each frequency, and then we can perform rand**(1.0/weight)
+    # Then we can loop over each frequency
+    # and then we can perform rand**(1.0/weight)
     # Return first element
 
     frequencies = NAMES[name]
@@ -73,10 +74,10 @@ class Computer < Player
     moves_and_freqs = Move::VALUES.zip(frequencies).to_h
 
     choice = moves_and_freqs.max_by do |_, weight|
-      rand**(1.0/weight)
+      rand**(1.0 / weight)
     end.first
 
     self.move =
-    Object.const_get(choice.capitalize).new(choice)
+      Object.const_get(choice.capitalize).new(choice)
   end
 end

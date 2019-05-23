@@ -1,7 +1,10 @@
 require './move'
 require './player'
+require './input'
 
 class RPSGame
+  include Input
+
   SEPARATOR = "-"
   MAX_WIDTH = 20
 
@@ -14,17 +17,17 @@ class RPSGame
     display_welcome_message
 
     loop do
-      display_score
       display_history
       human.choose
       computer.choose
       display_moves
+      calculate_winner
       display_winner
+      display_score
       break unless play_again?
       break if [human.score, computer.score].include?(Player::MAX_SCORE)
     end
 
-    display_score
     display_goodbye_message
   end
 
@@ -47,7 +50,7 @@ class RPSGame
     puts SEPARATOR * MAX_WIDTH
     history = Player.history
     history.each do |name, moves|
-      moves = moves.map {|move| move.to_s }
+      moves = moves.map(&:to_s)
       print "#{name}: #{moves} "
     end
   end
@@ -66,26 +69,27 @@ class RPSGame
     puts "#{computer.name} chose #{computer.move}."
   end
 
+  def calculate_winner
+    if human.move.won?(computer.move)
+      human.score += 1
+    elsif computer.move.won?(human.move)
+      computer.score += 1
+    end
+  end
+
   def display_winner
     if human.move.won?(computer.move)
       puts "#{human.name} won!"
-      human.score += 1
     elsif computer.move.won?(human.move)
       puts "#{computer.name} won!"
-      computer.score += 1
     else
       puts "It's a tie!"
     end
   end
 
   def play_again?
-    answer = nil
-    loop do
-      puts "Would you like to play again? (y/n)"
-      answer = gets.chomp
-      break if ['y', 'n'].include? answer.downcase
-      puts "Sorry, must be y or n."
-    end
+    messages = ["Would you like to play again? (y/n)", "Sorry, must be y or n."]
+    answer = get_input(messages, ['y', 'n'])
 
     return false if answer.downcase == "n"
     return true if answer.downcase == 'y'
