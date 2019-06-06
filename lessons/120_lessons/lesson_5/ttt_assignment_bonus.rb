@@ -86,11 +86,12 @@ class Square
 end
 
 class Player
-  attr_accessor :marker, :score
+  attr_accessor :marker, :score, :name
 
   def initialize
     @marker = ""
     @score = 0
+    @name = ""
   end
 
   def reset
@@ -103,6 +104,7 @@ end
 class TTTGame
   X = 'X'
   O = 'O'
+  COMPUTER_NAMES = ['R2D2', 'Hal', 'Chappie', 'Sonny', 'Number 5']
 
   attr_reader :board, :human, :computer
   attr_writer :current_marker
@@ -120,6 +122,7 @@ class TTTGame
   def play
     clear
     display_welcome_message
+    set_names
 
     loop do
       set_markers
@@ -165,7 +168,7 @@ class TTTGame
   end
 
   def display_board
-    puts "You're a #{human.marker}. Computer is a #{computer.marker}"
+    puts "#{human.name} is a #{human.marker}. #{computer.name} is a #{computer.marker}"
 
     puts ''
     board.draw
@@ -213,6 +216,19 @@ class TTTGame
     end
 
     joined_string
+  end
+
+  def set_names
+    puts "Enter your name:"
+    human_name = nil
+    loop do
+      human_name = gets.chomp
+      break unless human_name.strip.length == 0
+      puts "Sorry, please enter a name."
+    end
+
+    human.name = human_name
+    computer.name = COMPUTER_NAMES.sample
   end
 
   def human_moves
