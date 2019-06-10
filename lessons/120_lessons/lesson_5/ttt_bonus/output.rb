@@ -4,27 +4,18 @@ module Output
   def joinor(arr, delimeter = ', ', joining_word = 'or')
     return arr.join(" #{joining_word} ") if arr.length <= 2
 
-    joined_string = ''
-
-    arr.each_with_index do |element, index|
-      joined_string << element.to_s
-      joined_string << delimeter.to_s if index != arr.length - 1
-      joined_string << "#{joining_word} " if index == arr.length - 2
-    end
-
-    joined_string
+    arr.map.with_index do |element, index|
+      index == arr.length - 1 ? "#{joining_word} #{element}" : element.to_s
+    end.join(delimeter)
   end
 
   # Display methods
 
-  def display_result
-    # clear_screen_and_display_board
+  def display_result(winner)
+    clear_screen_and_display_board
 
-    case board.winning_marker
-    when human.marker
-      puts "#{human.name} won!"
-    when computer.marker
-      puts "#{computer.name} won!"
+    if winner
+      puts "#{winner.name} won!"
     else
       puts "It's a tie!"
     end
@@ -35,16 +26,10 @@ module Output
   def display_score
     puts "#{human.name}'s score: #{human.score}"
     puts "#{computer.name}'s score: #{computer.score}"
+    puts ''
   end
 
-  def display_final_score
-    winner =
-      if human.score == ROUNDS_PER_GAME
-        human.name
-      elsif computer.score == ROUNDS_PER_GAME
-        computer.name
-      end
-
+  def display_final_score(winner)
     puts "#{winner} won the round!"
     puts ''
   end
@@ -55,6 +40,7 @@ module Output
   end
 
   def display_welcome_message
+    clear
     puts 'Welcome to Tic Tac Toe!'
     puts ''
   end

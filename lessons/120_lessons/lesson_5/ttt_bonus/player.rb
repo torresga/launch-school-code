@@ -20,9 +20,9 @@ class Player
     first_to_move
   end
 
-  def get_other_marker(other_marker)
+  def other_marker
     Player::MARKER_CHOICES.reject do |choice|
-      choice == other_marker
+      choice == marker
     end.first
   end
 

@@ -13,6 +13,12 @@ class Computer < Player
   end
 
   def choose_square(board)
-    board.unmarked_keys.sample
+    if board.counter_move
+      board.counter_move
+    elsif board.unmarked_keys.include?(5)
+      5
+    else
+      board.unmarked_keys.sample
+    end
   end
 end

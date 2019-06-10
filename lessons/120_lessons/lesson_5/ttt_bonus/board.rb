@@ -1,3 +1,5 @@
+require './square'
+
 class Board
   WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +
                   [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +
@@ -38,6 +40,16 @@ class Board
     (1..9).each { |key| @squares[key] = Square.new }
   end
 
+  def counter_move
+    WINNING_LINES.each do |line|
+      squares = @squares.values_at(*line)
+      if two_identical_markers?(squares)
+        return line.select { |key| @squares[key].unmarked? }.first
+      end
+    end
+    nil
+  end
+
   # rubocop:disable Metrics/AbcSize
   def draw
     puts '     |     |'
@@ -55,6 +67,12 @@ class Board
   # rubocop:enable Metrics/AbcSize
 
   private
+
+  def two_identical_markers?(squares)
+    markers = squares.select(&:marked?).collect(&:marker)
+    return false if markers.size != 2
+    markers.min == markers.max
+  end
 
   def three_identical_markers?(squares)
     markers = squares.select(&:marked?).collect(&:marker)

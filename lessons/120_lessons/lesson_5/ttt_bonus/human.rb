@@ -1,11 +1,14 @@
 require './player'
-# require './board'
-# require './square'
 require './output'
 
 class Human < Player
-  include Input
+  include Output
   attr_writer :name
+
+  def initialize
+    super
+    @name = set_name
+  end
 
   def set_name
     puts 'Enter your name:'
@@ -41,9 +44,3 @@ class Human < Player
     square
   end
 end
-
-# gelsey = Human.new
-# p gelsey
-# gelsey.set_name
-# gelsey.choose_marker
-# gelsey.choose_square(Board.new)

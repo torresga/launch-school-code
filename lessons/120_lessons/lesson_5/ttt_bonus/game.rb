@@ -2,13 +2,11 @@ require 'pry'
 require './board'
 require './human'
 require './computer'
-require './square'
 require './output'
 
 # This is the game engine
 class TTTGame
   include Output
-  
   ROUNDS_PER_GAME = 5
   attr_reader :board, :human, :computer, :players, :current_player
 
@@ -21,37 +19,12 @@ class TTTGame
   end
 
   def play
-    clear
     display_welcome_message
-    set_human_name
-    # binding.pry
 
     loop do
       pick_first_to_move
       set_markers
-      # binding.pry
-
-      loop do
-        display_board
-
-        loop do
-          current_player_moves
-          break if board.someone_won? || board.full?
-          switch_player
-          # human_turn? ? clear_screen_and_display_board : display_board
-          display_board
-          # binding.pry
-        end
-
-        update_score
-        display_result
-        break if round_won?
-        display_play_again_message
-        reset_game
-        # binding.pry
-      end
-
-      display_final_score
+      play_round
       break unless play_again?
       reset_round
       display_play_again_message
@@ -62,17 +35,39 @@ class TTTGame
 
   private
 
-  def set_markers
-    if human.first_to_move?
-      human_marker = human.choose_marker
-      computer_marker = human.get_other_marker(human_marker)
-    else
-      computer_marker = computer.choose_marker
-      human_marker = computer.get_other_marker(computer_marker)
+  def play_game
+    loop do
+      display_board if human_turn?
+      current_player_moves
+      break if board.someone_won? || board.full?
+      clear if human_turn?
+      switch_player
     end
 
-    human.marker = human_marker
-    computer.marker = computer_marker
+    update_score(winner)
+    display_result(winner)
+  end
+
+  def play_round
+    loop do
+      play_game
+
+      break if round_won?
+      display_play_again_message
+      reset_game
+    end
+
+    display_final_score(round_winner)
+  end
+
+  def set_markers
+    if human.first_to_move?
+      human.marker = human.choose_marker
+      computer.marker = human.other_marker
+    else
+      computer.marker = computer.choose_marker
+      human.marker = computer.other_marker
+    end
   end
 
   def pick_first_to_move
@@ -90,27 +85,21 @@ class TTTGame
     @current_player = player
   end
 
-  def set_human_name
-    human.set_name
-  end
-
   def current_player_moves
     square = current_player.choose_square(board)
     board[square] = current_player.marker
   end
 
-  # switch player
+  def human_turn?
+    @current_player == human
+  end
+
   def switch_player
     @current_player = current_player.is_a?(Human) ? computer : human
   end
 
-  def update_score
-    case board.winning_marker
-    when human.marker
-      human.score += 1
-    when computer.marker
-      computer.score += 1
-    end
+  def update_score(winner)
+    winner.score += 1 unless winner.nil?
   end
 
   def round_won?
@@ -127,6 +116,22 @@ class TTTGame
     end
 
     answer == 'y'
+  end
+
+  def round_winner
+    if human.score == ROUNDS_PER_GAME
+      human.name
+    elsif computer.score == ROUNDS_PER_GAME
+      computer.name
+    end
+  end
+
+  def winner
+    if board.winning_marker == human.marker
+      human
+    elsif board.winning_marker == computer.marker
+      computer
+    end
   end
 
   # Reset methods
@@ -165,5 +170,4 @@ class TTTGame
   end
 end
 
-game = TTTGame.new
-game.play
+TTTGame.new.play
