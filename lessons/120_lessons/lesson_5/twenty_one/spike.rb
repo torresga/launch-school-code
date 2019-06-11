@@ -1,9 +1,11 @@
+# This is the superclass for Player and Dealer
 class Participant
-  attr_reader :hand
+  TOTAL = 21
+  attr_reader :hand, :name
 
   def initialize
     @hand = []
-    # I guess we can add a name as a state in here
+    @name = ''
   end
 
   def hit(deck)
@@ -11,49 +13,85 @@ class Participant
     hand << deck.pick_card
   end
 
-  def stay
-    # What does stay do?
-    # I think it tells next person to go
-  end
-
   def busted?
     # total is greater than 21
+    total > 21
   end
 
   def total
-    # This should calculate the total of all the cards in hand
-    # If we have one ace in hand
-    #   That ace can be replaced with 11
-    # If we have two or more aces in hand
-    #   Replace the first ace with 11
-    #   Replace remaining ace with 1
-    # Add together numerical_value for all aces
+    all_cards_total = hand.map(&:numerical_value).sum
+
+    ace_count.times do
+      all_cards_total -= 10 if all_cards_total > TOTAL
+    end
+
+    all_cards_total
+  end
+
+  private
+
+  def ace_count
+    hand.select(&:ace?).count
   end
 end
 
+# This is the class for Player.
 class Player < Participant
+  def initialize
+    super
+    @name = user_input_name
+  end
+
+  def user_input_name
+    name = nil
+    loop do
+      print 'What is your name? '
+      name = gets.chomp
+      break unless name.strip.length.zero?
+      puts 'Sorry, please enter a name.'
+    end
+    name
+  end
+
+  def choose
+    answer = nil
+    loop do
+      print 'Will you (h)it or (s)tay? '
+      answer = gets.chomp
+      break if %w(h hit s stay).include?(answer)
+      puts 'Please input a valid answer.'
+    end
+    answer
+  end
 end
 
+# This is the class for Dealer.
 class Dealer < Participant
+  attr_reader :deck
   INITIAL_NUMBER_OF_CARDS = 2
+  STAY_TOTAL = 17
 
   def initialize
     super
     @deck = Deck.new
+    @name = 'Dealer'
   end
 
   def deal(other_person)
-    # Hit's self and other person twice
     INITIAL_NUMBER_OF_CARDS.times do
-      hit(@deck)
       other_person.hit(@deck)
     end
   end
+
+  def stay
+    total > STAY_TOTAL
+  end
 end
 
+# This is the class for Deck.
 class Deck
-  SUITS = %w(Hearts Diamonds Clubs Spades)
-  VALUES = %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace)
+  SUITS = %w(Hearts Diamonds Clubs Spades).freeze
+  VALUES = %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace).freeze
   attr_reader :cards
 
   # Create 52 cards
@@ -83,6 +121,7 @@ class Deck
   end
 end
 
+# This is the class for Card.
 class Card
   def initialize(suit, value)
     @suit = suit
@@ -99,8 +138,12 @@ class Card
     elsif %w(Jack Queen King).include?(value)
       10
     else
-      value
+      11
     end
+  end
+
+  def ace?
+    value == 'Ace'
   end
 
   private
@@ -108,68 +151,145 @@ class Card
   attr_reader :value
 end
 
+# This is the class for Game.
 class Game
+  NUMBER_OF_DASHES = 21
+  attr_reader :player, :dealer
+
+  def initialize
+    # Create player and dealer objects in here
+    @player = Player.new
+    @dealer = Dealer.new
+    @winner = nil
+  end
+
   def start
+    display_welcome_message
     deal_cards
     show_initial_cards
     player_turn
     dealer_turn
     show_result
+    display_goodbye_message
   end
 
   private
 
+  attr_accessor :winner
+
   def deal_cards
+    display_card_dealing_text
     # Dealer deals cards to self and player
+    dealer.deal(player)
+    dealer.deal(dealer)
   end
 
   def show_initial_cards
     # Dealer shows only one card.
+    puts '-' * NUMBER_OF_DASHES
+    puts "Dealer's cards:"
+    puts "[#{dealer.hand.sample}]"
     # Player shows both cards
+    puts '-' * NUMBER_OF_DASHES
+    show_hand(player)
+    puts '-' * NUMBER_OF_DASHES
   end
 
   def player_turn
-    # If user is not busted
-    #   Decide to hit or stay
-    #   If hit, gets one more card from dealer
-    #   If stays, then it's dealer's turn
-    # Else
-    #   set winner to dealer
+    loop do
+      answer = player.choose
+      break if %w(s stay).include?(answer)
+
+      player_hit
+      break if player.busted?
+    end
+
+    display_busted_message(player) if player.busted?
   end
 
   def dealer_turn
-    # If dealer's total is less than 17
-    #   Hit
-    # If dealer is busted?
-    #  set winner to player
+    return if player.busted?
+
+    loop do
+      dealer.hit(dealer.deck)
+      break if dealer.stay || dealer.busted?
+    end
+
+    display_busted_message(dealer) if dealer.busted?
   end
 
   def show_result
-    # Show dealer hand
-    # Show player hand
-    # declare_winner if there's no winner yet
-    # If winner == "tie"
-    #   puts "Oh no! It's a tie!"
-    # else
-    #   puts #{winner} wins the game!
+    puts ''
+    puts '-' * NUMBER_OF_DASHES
+    puts 'Results of this hand:'
+    puts '-' * NUMBER_OF_DASHES
+    show_hand(dealer)
+    show_hand(player)
+    decide_winner
+    display_winning_text
   end
 
-  def declare_winner
-    # Compare dealer.hand and player.hand
-    #  if dealer.hand > player.hand
-    #   set winner to dealer
-    # elsif player.hand > dealer.hand
-    #   set winner to player
-    # else
-    #   set winner to "tie"
+  def display_busted_message(player)
+    puts ''
+    puts "Oh no! #{player.name} busted!"
+  end
+
+  def decide_winner
+    winner =
+      if player.total == dealer.total
+        'tie'
+      elsif player.busted?
+        dealer
+      elsif dealer.busted?
+        player
+      elsif won?(player, dealer)
+        player
+      elsif won?(dealer, player)
+        dealer
+      end
+
+    self.winner = winner
+  end
+
+  def won?(first, second)
+    first.total > second.total
+  end
+
+  def player_hit
+    player.hit(dealer.deck)
+    show_hand(player)
+  end
+
+  def show_hand(user)
+    puts ''
+    puts "#{user.name}'s cards:"
+    puts "[#{user.hand.join(', ')}]"
+    puts "#{user.name} total: #{user.total}"
+    puts ''
+  end
+
+  def display_winning_text
+    if winner == 'tie'
+      puts "Oh no! It's a tie!"
+    else
+      puts "#{winner.name} wins the game!"
+    end
+  end
+
+  def display_welcome_message
+    puts '-' * (NUMBER_OF_DASHES * 2)
+    puts 'Welcome to Twenty One!'
+    puts '-' * (NUMBER_OF_DASHES * 2)
+  end
+
+  def display_goodbye_message
+    puts 'Thanks for playing Twenty One! Goodbye!'
+  end
+
+  def display_card_dealing_text
+    puts "Let's deal some cards!"
+    puts ''
   end
 end
 
-# Game.new.start
-pl = Player.new
-dealer = Dealer.new
-dealer.deal(pl)
-
-p pl.hand
-p dealer.hand.first
-p dealer.hand.first.numerical_value
+Game.new.start
