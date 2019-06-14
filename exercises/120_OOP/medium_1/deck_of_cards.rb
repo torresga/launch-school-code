@@ -26,8 +26,6 @@ class Deck
   RANKS = ((2..10).to_a + %w(Jack Queen King Ace)).freeze
   SUITS = %w(Hearts Clubs Diamonds Spades).freeze
 
-  attr_accessor :cards
-
   def initialize
     @cards = reset
   end
@@ -41,10 +39,9 @@ class Deck
       self.cards = reset
     end
     # Pick random card
-    card = cards.sample
     # Remove the card from deck
     # return the card
-    card
+    cards.shuffle!.shift
   end
 
   def reset
@@ -55,35 +52,22 @@ class Deck
       end
     end.flatten
   end
+
+  private
+
+  attr_accessor :cards
 end
 
 # Examples:
 
-# deck = Deck.new
-# p deck
-# p deck.draw
-
 deck = Deck.new
-puts deck.cards
 drawn = []
 52.times { drawn << deck.draw }
-puts ''
-puts "Drawn cards"
-puts '-' * 20
-puts ''
-puts drawn.sort
-puts drawn.size
-puts ''
-puts "Cards still in deck"
-puts '-' * 20
-puts ''
-puts deck.cards
-# puts drawn.select { |card| card.suit == 'Hearts' }
-# p drawn.count { |card| card.rank == 5 } == 4
-# p drawn.count { |card| card.suit == 'Hearts' } == 13
-#
-# drawn2 = []
-# 52.times { drawn2 << deck.draw }
-# drawn != drawn2 # Almost always.
+p drawn.count { |card| card.rank == 5 } == 4
+p drawn.count { |card| card.suit == 'Hearts' } == 13
+
+drawn2 = []
+52.times { drawn2 << deck.draw }
+p drawn != drawn2 # Almost always.
 
 # Note that the last line should almost always be true; if you shuffle the deck 1000 times a second, you will be very, very, very old before you see two consecutive shuffles produce the same results. If you get a false result, you almost certainly have something wrong.
