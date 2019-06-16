@@ -64,29 +64,23 @@
 
 class GuessingGame
   GUESS_LIMIT = 7
+  RANGE = (1..100)
   attr_reader :guesses_remaining
   attr_accessor :player_guess
 
   def initialize
     # We can get random number and assign it to winning_number
     # We can initialize a variable in here to track the number of guesses, initially set it to GUESS_LIMIT
-    @winning_number = rand(100)
+    @winning_number = rand(RANGE)
     @guesses_remaining = GUESS_LIMIT
     @player_guess = 0
   end
 
   def play
-    # Start new game with a new number to guess
-    # Loop do
-    #   Display remaining_guesses
-    #   Get input
-    #   Break if won? or no guesses remaining
-    #   Tell user if their guess is too high or low
-    #   Subtract 1 from remaining_guesses
-    loop do
-      break if player_won? || no_guesses_remaining?
+    while guesses_remaining?
       display_remaining_guesses
       player_turn
+      break if player_won?
       subtract_player_guesses
       display_hint
     end
@@ -101,8 +95,8 @@ class GuessingGame
     player_guess == @winning_number
   end
 
-  def no_guesses_remaining?
-    guesses_remaining == 0
+  def guesses_remaining?
+    guesses_remaining > 0
   end
 
   def display_hint
@@ -114,10 +108,16 @@ class GuessingGame
   end
 
   def display_remaining_guesses
-    puts "You have #{guesses_remaining} guesses remaining."
+    if guesses_remaining == 1
+      puts "You have #{guesses_remaining} guess remaining."
+    else
+      puts "You have #{guesses_remaining} guesses remaining."
+    end
   end
 
   def display_result
+    puts ''
+
     if player_won?
       puts "That's the number! You won!"
     else
@@ -126,12 +126,12 @@ class GuessingGame
   end
 
   def player_turn
-    print "Enter a number between 1 and 100: "
+    print "Enter a number between #{RANGE.first} and #{RANGE.last}: "
     guess = nil
     loop do
       guess = gets.chomp.to_i
-      break if (1..100).cover?(guess)
-      print "Invalid guess. Enter a number between 1 and 100: "
+      break if RANGE.cover?(guess)
+      print "Invalid guess. Enter a number between #{RANGE.first} and #{RANGE.last}: "
     end
     self.player_guess = guess
   end
