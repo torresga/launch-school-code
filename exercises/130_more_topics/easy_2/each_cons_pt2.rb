@@ -39,15 +39,16 @@
 # hash == {}
 
 # Output: outputs in pairs, x length long
+# x represents the length of each slice.
 
 # Loop through the array
   #
 
 def each_cons(arr, length)
   arr.each_with_index do |item, index|
-    break if index+length > arr.size
-    slice = arr[index...index+length]
-    yield(slice.first, slice.last)
+    slice = arr.slice(index, length)
+    break if slice.length < length
+    yield(*slice)
   end
 
   nil
@@ -69,7 +70,7 @@ hash = {}
 each_cons([1, 3, 6, 10], 3) do |value1, *values|
   hash[value1] = values
 end
-p hash #== { 1 => [3, 6], 3 => [6, 10] }
+p hash == { 1 => [3, 6], 3 => [6, 10] }
 
 hash = {}
 each_cons([1, 3, 6, 10], 4) do |value1, *values|
