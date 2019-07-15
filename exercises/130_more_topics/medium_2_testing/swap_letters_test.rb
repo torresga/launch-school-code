@@ -14,9 +14,14 @@ class TestText < MiniTest::Test
   def teardown
     # we should probably close the file in here
     @file.close
+    puts "File has been closed: #{@file.closed?}"
   end
 
   def test_swap
     assert_equal(@full_text.gsub("a", "e"), @text.swap("a", "e"))
+  end
+
+  def test_word_count
+    assert_equal(@full_text.split.count, @text.word_count)
   end
 end

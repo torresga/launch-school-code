@@ -6,14 +6,8 @@ class Text
   def swap(letter_one, letter_two)
     @text.gsub(letter_one, letter_two)
   end
+
+  def word_count
+    @text.split.count
+  end
 end
-
-file = File.new("swap_letters_sample_text.txt").read
-# text = Text.new(file.read)
-
-text = file.clone
-
-p file
-p text
-
-# p text.swap("a", "e")
