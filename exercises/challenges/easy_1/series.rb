@@ -42,11 +42,19 @@ class Series
 
     series = []
 
-    @series.each_with_index do |_, index|
+    @series.each_index do |index|
       slice = @series.slice(index, size)
       series << slice if slice.size == size
     end
 
     series
+
+    # Refactored - we can chain map and select, but it might be more readable to just use #each_index instead.
+    
+    # @series.map.with_index do |_, index|
+    #   @series.slice(index, size)
+    # end.select do |slice|
+    #   slice.size == size
+    # end
   end
 end
