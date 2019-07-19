@@ -20,10 +20,6 @@
 
 # Algorithm:
 
-
-
-require 'pry'
-
 class Sieve
   attr_reader :range
 
