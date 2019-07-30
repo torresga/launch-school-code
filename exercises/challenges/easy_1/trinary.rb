@@ -27,9 +27,10 @@
 
 class Trinary
   def initialize(value)
-    @value = value.match?(/[3-9]/) ? 0 : value.to_i
+    @value = value.match?(/[^012]/) ? 0 : value.to_i
   end
 
+  # In here we have to check if number only contains 0 1 and 2.
   def to_decimal
     @value.digits.map.with_index do |current, index|
       current * (3 ** index)
