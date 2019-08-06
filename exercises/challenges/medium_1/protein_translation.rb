@@ -84,6 +84,7 @@ class Translation
   end
 
   def self.of_rna(sequence)
+    # Not in the assignment description - assumption made by me - be careful
     raise InvalidCodonError if sequence.match?(/[^AUCG]/)
 
     amino_acids = []
