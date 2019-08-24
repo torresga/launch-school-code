@@ -33,36 +33,90 @@
 #
 # Rest of string
 
-# Make a copy of the string
-# Loop rails+1 times |current_number|
-#   Create a new string
-#   Loop through the old string
-#     Append every current_number character to new string
-#   return string
+# Data Structure
+# A nested array - [[], [], []]
+
+# Algorithm
+# Turn string into an array of characters
+# Loop until the combined length of all arrays is the length of characters in plaintext
+#   Loop from 0 up to rail number
+#     Add current letter (arr[x]) to correct array (nested_arr[x])
+#
+#   Loop from rail number - 2 down to 0 (because we just want to get the middle two - between bottom rail and top, which are covered in previous loop)
+#     Add current letter (arr[x]) to correct array (nested_arr[x])
+
+# Flatten nested array
+#  Remove nils from nested arrays
+# Return joined array
 
 class RailFenceCipher
 
-  def self.decode(str, rails)
-    new_str = ''
-    dup_str = str.dup
+  def self.encode(str, rails)
+    return str if str.empty?
 
-    (rails+1).downto(1) do |current_number|
-      str.split("").each_with_index do |_, idx|
-        new_str << dup_str.slice!(idx * current_number) if !str[idx * current_number].nil?
+    encoded_message = []
+    rails.times { encoded_message << []}
+    plaintext = str.chars
+
+    until plaintext.empty?
+      0.upto(rails-1) do |current_index|
+        encoded_message[current_index] << plaintext.shift
       end
+
+      (rails-2).downto(1) do |current_index|
+        encoded_message[current_index] << plaintext.shift
+      end
+
     end
 
-    p new_str
-    # p str
+    encoded_message.flatten.reject { |elem| elem.nil? }.join
   end
-end
-
-RailFenceCipher.decode("WEAREDISCOVEREDFLEEATONCE", 3)
-
-#
-# # "WE ARE DISCOVERED FLEE AT ONCE" without spaces is 25 characters long
-# Each row in above is 25 characters long - and 3 rows
-
-# We want to split string into an array of rails number of rows that are length of the string without spaces?
 
 #   - decode
+
+def self.decode(str, rails)
+  return str if str.empty?
+
+  message = []
+  rails.times { message << []}
+  plaintext = str.chars
+
+  until plaintext.empty?
+    0.upto(rails-1) do |current_index|
+      message[current_index] << "X"
+      plaintext.shift
+    end
+
+    (rails-2).downto(1) do |current_index|
+      message[current_index] << "X"
+      plaintext.shift
+    end
+  end
+
+  plaintext = str.chars
+  message.map do |arr|
+    arr.map do |_|
+      plaintext.shift
+    end
+  end
+
+
+end
+end
+# Input: A string, number of rails
+# Output: The decoded string
+# Algorithm
+# 1. Get the zig zag shape (meaning, get a nested array with placeholders where the letters are)
+    # Create a new array zig_zag
+    # Put three arrays in zig_zag
+    # Loop until str is empty
+    #   Loop from 0 to rails-1
+    #     Add placeholder to array at current index
+    #
+    #   Loop from rails-2 to 1
+    #     Add placeholder to array at current index
+# 2. Add letters to the zig zag shape
+# 3. Zig zag up and down the letters in order
+
+p RailFenceCipher.encode('WEAREDISCOVEREDFLEEATONCE', 3)
+# p RailFenceCipher.decode('WECRLTEERDSOEEFEAOCAIVDEN', 3)
