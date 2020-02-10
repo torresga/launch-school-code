@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Design File</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body, img, p, h1, h2, h3 {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #2f2840 url('bg_body.gif');
+        color: #45494D;
+        font: 16px 'Nunito', sans-serif;
+      }
+
+      header {
+        align-items: center;
+        display: flex;
+        height: 497px;
+        justify-content: center;
+      }
+
+      header h1 {
+        margin-top: 65px;
+      }
+
+      main, footer {
+        margin: 0 auto;
+        text-align: center;
+        width: 960px;
+      }
+
+      main {
+        background-color: white;
+        font-size: 1.2rem;
+        padding: 8% 8% 4% 8%;
+      }
+
+      h2 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin-bottom: 2.75%;
+      }
+
+      h2::before, h2::after {
+        color: #2F2840;
+        content: '•';
+        font-size: 1.5rem;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      h3 {
+        color: #3E98B2;
+        font-weight: 900;
+        margin-bottom: 2.5%;
+      }
+
+      p {
+        font-weight: 500;
+      }
+
+      article:first-of-type {
+        margin-bottom: 19%;
+      }
+
+      footer {
+        background-color: #E7E7E7;
+        margin-bottom: 160px;
+        padding-top: 4%;
+        padding-bottom: 4%;
+      }
+
+      footer ul {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      footer li {
+        list-style-type: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <img src="logo.png" alt="SpaceDesign" />
+      </h1>
+    </header>
+
+    <main>
+      <article>
+      <h2>About Us</h2>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure in.</p>
+    </article>
+
+    <article>
+      <h2>Our Founder</h2>
+      <h3>Admiral Kerning</h3>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.</p>
+    </article>
+    </main>
+
+    <footer>
+      <ul>
+        <li>
+          <a href="#"><img src="icon_twitter.png" alt="Twitter" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="icon_facebook.png" alt="Facebook" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="icon_email.png" alt="Email" /></a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

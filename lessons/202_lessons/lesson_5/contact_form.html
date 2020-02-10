@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact Form</title>
+  <style>
+  html {
+    box-sizing: border-box;
+  }
+
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  fieldset {
+    width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+
+  .partial {
+    display: inline-block;
+  }
+
+  .one_half {
+    width: 50%;
+  }
+
+  .left {
+    padding-right: 5px;
+  }
+
+  .right {
+    padding-left: 5px;
+  }
+
+  .one_tenth {
+    width: 10%;
+  }
+
+  .four_tenths {
+    width: 40%;
+  }
+
+  .both {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  dl {
+    margin-bottom: 0;
+  }
+
+  dl + dl {
+    margin-top: 0;
+  }
+
+  dt {
+    margin-bottom: 5px;
+  }
+
+  dd {
+    margin: 0 0 25px 0;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    height: 25px;
+    font: normal 14px Helvetica, Arial, sans-serif;
+    padding: 0 10px;
+    border: 1px solid #cecece;
+  }
+
+  textarea {
+    height: auto;
+    resize: vertical;
+  }
+  </style>
+</head>
+<body>
+
+  <form action="#" method="post">
+    <fieldset>
+    <dl class="partial one_half left">
+      <dt><label for="first_name">First Name</label></dt>
+      <dd><input type="text" name="first_name" id="first_name" /></dd>
+    </dl><!--
+    --><dl class="partial one_half right">
+      <dt><label for="last_name">Last Name</label></dt>
+      <dd><input type="text" name="last_name" id="last_name" /></dd>
+    </dl>
+
+    <dl>
+      <dt><label for="email">Email Address</label></dt>
+      <dd><input type="email" name="email" id="email" placeholder="user@example.net"/></dd>
+    </dl>
+
+    <dl class="partial one_half left">
+      <dt><label for="city">City</label></dt>
+      <dd><input type="text" name="city" id="city" /></dd>
+    </dl><!--
+    --><dl class="partial one_tenth both">
+      <dt><label for="state">State</label></dt>
+      <dd>
+        <select name="state" id="state">
+          <option>AK</option>
+          <option>AL</option>
+          <option>AR</option>
+          <option>AZ</option>
+          <option>CA</option>
+          <option>CO</option>
+          <option>CT</option>
+          <option>DC</option>
+          <option>DE</option>
+          <option>FL</option>
+          <option>GA</option>
+          <option>HI</option>
+          <option>IA</option>
+          <option>ID</option>
+          <option>IL</option>
+          <option>IN</option>
+          <option>KS</option>
+          <option>KY</option>
+          <option>LA</option>
+          <option>MA</option>
+          <option>MD</option>
+          <option>ME</option>
+          <option>MI</option>
+          <option>MN</option>
+          <option>MO</option>
+          <option>MS</option>
+          <option>MT</option>
+          <option>NC</option>
+          <option>ND</option>
+          <option>NE</option>
+          <option>NH</option>
+          <option>NJ</option>
+          <option>NM</option>
+          <option>NV</option>
+          <option>NY</option>
+          <option>OH</option>
+          <option>OK</option>
+          <option>OR</option>
+          <option>PA</option>
+          <option>RI</option>
+          <option>SC</option>
+          <option>SD</option>
+          <option>TN</option>
+          <option>TX</option>
+          <option>UT</option>
+          <option>VA</option>
+          <option>VT</option>
+          <option>WA</option>
+          <option>WI</option>
+          <option>WV</option>
+          <option>WY</option>
+        </select>
+      </dd>
+    </dl><!--
+    --><dl class="partial four_tenths right">
+      <dt><label for="zip_code">Zip Code</label></dt>
+      <dd><input type="text" name="zip_code" id="zip_code" minlength="5" maxlength="5" placeholder="10101" pattern="[0-9]{5}"/></dd>
+    </dl>
+
+      <p>Which of these colors do you like best?</p>
+        <ul>
+          <li>
+            <label>
+              <input type="radio" name="color" value="red" checked />
+              Red
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="orange" />
+              Orange
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="yellow" />
+              Yellow
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="green" />
+              Green
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="blue" />
+              Blue
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="indigo" />
+              Indigo
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="violet" />
+              Violet
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="brown" />
+              Brown
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="black" />
+              Black
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="color" value="white" />
+              White
+            </label>
+          </li>
+        </ul>
+
+      <p>Which web technologies do you want to  learn?</p>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" name="technologies" value="HTML" />
+              HTML
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="technologies" value="CSS" />
+              CSS
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="technologies" value="JavaScript" />
+              JavaScript
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="technologies" value="Ruby" />
+              Ruby
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="technologies" value="Rails" />
+              Rails
+            </label>
+          </li>
+        </ul>
+
+      <dl>
+        <dt><label for="comments">Comments</label></dt>
+        <dd><textarea rows="6" cols="80"></textarea></dd>
+      </dl>
+
+      <input type="hidden" name="timestamp" value="2020-01-23" />
+      <button type="submit" name="send">Send</button>
+      <button type="reset" name="reset">Reset</button>
+    </fieldset>
+  </form>
+</body>
+</html>

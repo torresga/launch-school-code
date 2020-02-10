@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Web Store</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #FFD505;
+        font: 16px sans-serif;
+      }
+
+      header, main {
+        width: 900px;
+        margin: 0 auto;
+      }
+
+      header {
+        background-color: #047EC1;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-size: 1.25rem;
+        padding: 25px;
+        color: white;
+        margin-bottom: 25px;
+      }
+
+      main {
+        background-color: #ECECEC;
+        font-size: 1.25rem;
+        padding: 25px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+
+      .col {
+        background-color: white;
+        font-size: 1rem;
+        margin: 10px;
+        padding: 20px;
+      }
+
+      .col img {
+        height: 150px;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 25px;
+      }
+
+      [type=checkbox] {
+        display: none;
+      }
+
+      input:checked + figure img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: auto;
+        margin-left: -250px;
+        margin-top: -250px;
+        z-index: 2;
+      }
+
+      input:checked + figure:before {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        content: "";
+        background-color: rgba(0, 0, 0, .4);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Paramiicio</h1>
+    </header>
+
+    <main>
+      <h2>All Products</h2>
+
+      <section class="grid">
+
+      <label class="col">
+        <input type="checkbox" name="aurelia" value="aurelia" />
+
+        <figure>
+          <img src="images/aurelia.jpg" alt="Aurelia" />
+        </figure>
+
+        <h3>Aurelia</h3>
+        <p>$12.99</p>
+      </label>
+
+      <label class="col">
+        <input type="checkbox" name="polycaryum" value="polycaryum" />
+
+        <figure>
+          <img src="images/polycaryum.jpg" alt="Polycaryum" />
+        </figure>
+
+        <h3>Polycaryum</h3>
+        <p>$12.99</p>
+      </label>
+
+      <label class="col">
+        <input type="checkbox" name="chlorelligerum" value="chlorelligerum" />
+
+        <figure>
+          <img src="images/chlorelligerum.jpg" alt="Chlorelligerum" />
+        </figure>
+
+        <h3>Chlorelligerum</h3>
+        <p>$12.99</p>
+      </label>
+
+      <label class="col">
+        <input type="checkbox" name="sonneborni" value="sonneborni" />
+
+        <figure>
+          <img src="images/sonneborni.jpg" alt="Sonneborni" />
+        </figure>
+
+        <h3>Sonneborni</h3>
+        <p>$12.99</p>
+      </label>
+
+      <label class="col">
+        <input type="checkbox" name="ugandae" value="ugandae" />
+
+        <figure>
+          <img src="images/ugandae.jpg" alt="Ugandae" />
+        </figure>
+
+        <h3>Ugandae</h3>
+        <p>$12.99</p>
+      </label>
+
+      <label class="col">
+        <input type="checkbox" name="woodruffi" value="woodruffi" />
+
+        <figure>
+          <img src="images/woodruffi.jpg" alt="Woodruffi" />
+        </figure>
+
+        <h3>Woodruffi</h3>
+        <p>$12.99</p>
+      </label>
+
+    </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Photo Gallery</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #151515;
+      color: white;
+      font: 16px sans-serif;
+    }
+
+    .container {
+      background-color: #333;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2%;
+    }
+
+    header {
+      padding-bottom: 1%;
+    }
+
+    header h1 {
+      text-align: center;
+      padding-bottom: 2%;
+    }
+
+    figure img {
+      border: 15px solid white;
+    }
+
+    figcaption {
+      margin-top: 1%;
+    }
+
+    main {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .photo {
+      width: 23%;
+      margin-bottom: 15px;
+    }
+
+    @media screen and (max-width: 899px) {
+      .photo {
+        width: 31.33%;
+      }
+    }
+
+    @media screen and (max-width: 599px) {
+      .photo {
+        width: 48%;
+      }
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      border: 5px solid white;
+    }
+
+    @media screen and (min-width: 1280px) {
+      .container {
+        display: flex;
+        max-width: 100%;
+      }
+
+      header {
+        width: 70%;
+        padding-right: 5%;
+      }
+
+      figure img {
+        max-width: 950px;
+      }
+
+      main {
+        width: 30%;
+        flex-direction: column;
+      }
+
+      .photo {
+        width: 100%;
+      }
+
+
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>My Photo Gallery</h1>
+      <figure>
+        <img src="https://picsum.photos/1200/900" alt="header photo"/>
+        <figcaption>Example photo</<figcaption>
+      </figure>
+    </header>
+
+    <main>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+      <div class="photo">
+        <img src="https://picsum.photos/1200/900" />
+      </div>
+    </main>
+  </div>
+</body>
+</html>
