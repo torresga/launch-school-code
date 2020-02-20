@@ -1,0 +1,77 @@
+1.
+Output:
+'This is global.'
+
+On line 1, a new global variable is declared and assigned the value 'This is global'.
+
+On line 7, someFunction is called. On line 4, a new local variable is declared and assigned the value 'This is local'. This variable is local to 'someFunction()'.
+
+On line 8, the global variable `myVar`, created on line 1, it output to the screen. This global variable is output, rather than the `myVar` on line 4, because JS cannot see the local variable created on line 4 outside of the function declaration. This is because functions in JS create a new scope. Therefore, it outputs the value of `myVar` declared on line 1.
+
+2.
+Output:
+"This is local"
+
+This code will output 'This is local' because console.log is inside the function and therefore will output the value of myVar initialized on line 4, also inside the function. `myVar` on line 4 is a different variable than `myVar` on line 1. `myVar` on line 4 is a variable local to someFunction(). This is an example of variable shadowing - two variables with the same name initialized in two different scopes.
+
+3.
+Output:
+'This is local'
+
+Inside someFunction(), the global variable `myVar` is being reassigned to the string 'This is local'. This reassignment happens when someFunction() is invoked. The console.log happens after someFunction() is called, so therefore myVar contains the value 'This is local', which is then output to the screen. Variables in a global scope can be accessed and modified from within an inner scope.
+
+4.
+Output:
+'This is global'
+
+The global variable `myVar` is accessible inside of someFunction because variables in a global scope can be accessed from within an inner scope.
+
+5.
+Output:
+'This is global'
+
+When someFunction() is called, a new global variable `myVar` is declared. `myVar` is global because the 'var' keyword is missing. `myVar` is assigned a value, and javaScript couldn't find a matching variable inside of the current scope (function) and the one above it (global) so it created a new variable of a global scope and assigned it the value 'This is global' (technically it is a property of the global object).
+
+6.
+Output:
+7
+
+a is going to remain unchanged because a is not modified by a function. (Answer says that this is because 7 is a primitive (immutable) value and passing a variable that contains a primitive value as an argument does not have any effect on the value contained in that variable. (but what about objects of mutable types - can they be modified when passed into functions?))
+
+7.
+Output:
+7
+
+myValue(a) does not return anything since myValue() does not output anything to the screen or has a return statement.
+
+Also, variable referenced by myValue(a) and console.log(a) refers to the a variable declared and assigned to 7 on line 1. The `a` variable used as a parameter inside the myValue function declaration is different from the variable on line 1. This code demonstrates the concept of variable shadowing.
+
+9.
+Output:
+undefined
+
+because of hoisting. This code is the same as:
+
+var a;
+console.log(a);
+a = 1;
+
+the variable declaration is 'hoisted' up to the top of its scope. Variable assignment is NOT hoisted. Since a is declared but does not have a value, it is undefined.
+
+10.
+Output:
+'Hello, world'
+
+This is because function declarations (name and body) are hoisted up to the top of its' scope.
+
+FE:
+
+Hoisted equivalent:
+
+var logValue;
+function logValue() {
+  console.log('Hello, world!');
+}
+
+logValue = 'foo';
+console.log(typeof logValue) // outputs 'string'

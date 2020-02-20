@@ -1,0 +1,61 @@
+1. Mozilla Developers' Network.
+
+2. Look at JavaScript Standard built-in objects, the String object, and look on the left side of the Methods: there is a method called 'toLowerCase()': https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase
+
+3. No.
+
+4. By using bracket notation with an integer between the brackets - ['fish', 'and', 'chips'][1]
+
+5. 'undefined' is return
+
+6. line 3 - 'palm tree'
+line 4 - 'palm tree'
+line 5 - 'sequoia'
+
+7. typeof returns a string indicating the type of its' operand (its input)
+typeof 23.5; // 'number'
+typeof 'Call me Ishmael.'; // 'string'
+typeof false; // 'boolean'
+typeof 0; // 'number'
+typeof null; // 'object'
+typeof undefined; // 'undefined'
+
+8. typeof tweet; // 'string'
+typeof words; // 'object'
+typeof isValid; // 'boolean'
+
+9.
+tweet.split(' '); // an array of strings
+[
+  'Starting',
+  'to',
+  'get',
+  'the',
+  'hang',
+  'of',
+  'it...',
+  '#javascript',
+  '#launchschool'
+]
+
+tweet.split(' ').reverse(); // a reversed array
+
+[
+  '#launchschool',
+  '#javascript',
+  'it...',
+  'of',
+  'hang',
+  'the',
+  'get',
+  'to',
+  'Starting'
+]
+
+tweet.split(' ').reverse().join(' '); // a new string
+
+'#launchschool #javascript it... of hang the get to Starting'
+
+10.
+'8' == 8 // true
+'8' === 8 // false

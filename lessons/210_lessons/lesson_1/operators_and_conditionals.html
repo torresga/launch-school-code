@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+  <title>Operators and Conditionals</title>
+  <script>
+    // 1
+    var apples = 3;
+    var bananas = 5;
+
+    if (apples == bananas) {
+      console.log("true");
+    }
+
+    // 2
+    bananas = "3";
+
+    if (apples == bananas) {
+      console.log("they are both equal");
+    }
+
+    // 3
+    // this one doesn't print out because javascript does not perform type coercion with ===
+    if (apples === bananas) {
+      console.log("these are not equal");
+    }
+
+    // 4
+    if (apples === bananas) {
+      console.log("they are equal");
+    } else {
+      console.log("they are not equal");
+    }
+
+    // 5
+    if (apples === bananas) {
+      console.log("they are equal");
+    } else if (apples == bananas) {
+      console.log("this is using type coercion");
+    } else {
+      console.log("they are not equal");
+    }
+
+    // 6
+    if (apples === bananas) {
+      console.log("they are equal");
+    }
+    else {
+      if (apples == bananas) {
+        console.log("this is using type coercion");
+      }
+      else {
+        console.log("they are not equal");
+      }
+    }
+
+    // 7
+    apples = 3;
+    bananas = 3;
+    var areEqual = apples === bananas;
+
+    console.log(areEqual);
+
+    // 8
+    apples = 3;
+    bananas = undefined;
+    var eitherOr = apples || bananas;
+
+    console.log(eitherOr);
+
+    // 9
+    bananas = 1;
+    eitherOr = apples || bananas;
+
+    console.log(eitherOr);
+
+    eitherOr = bananas || apples;
+
+    console.log(eitherOr);
+
+    // 10
+    var lastName;
+    var familyMessage;
+
+    lastName = 'Tripperson';
+
+    familyMessage = lastName === 'Tripperson' ? "You're part of the family!" : "You're not family.";
+
+    console.log(familyMessage);
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+  <title>Primitive Types and Type Coercion</title>
+  <script>
+    var x = '13';
+    var y = 9;
+
+    x = Number(x);
+
+    console.log(x + y);
+
+    var x = '13';
+    var y = 9;
+
+    x = Number(x);
+
+    console.log(x * y); // This will be a number because multiplication converts a string to a number
+
+    var npa = 212;
+    var nxx = 555;
+    var num = 1212;
+
+    console.log(npa.toString() + nxx.toString() + num.toString());
+
+    console.log(String(npa) + String(nxx) + String(num));
+
+    var bool = true;
+    var arr = [1, 2, 3];
+
+    console.log(bool.toString());
+    console.log(arr.toString());
+  </script>
+</head>
+<body>
+</body>
+</html>

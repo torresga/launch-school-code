@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Tip Calculator</title>
+  <script>
+  // Tip Calculator
+  // Create a simple tip calculator. The program should prompt for a bill amount and a tip rate. The program must compute the tip, and then log both the tip and the total amount of the bill to the console. You can ignore input validation and assume that the user will put in numbers.
+  //
+  // Example:
+  //
+  // What is the bill? 200
+  // What is the tip percentage? 15
+  //
+  // The tip is $30.00
+  // The total is $230.00
+
+  // Input: The amount of the bill and the tip percentage
+  // Ouput: The amount of the tip, and the amount of the total bill (bill + tip)
+  //
+  // Rules:
+  // - Ignore input validation, assuming that user will put in numbers
+
+  // We will have to convert input from string to a number
+
+  // Algorithm
+  // Get the bill
+  // Get the tip percentage
+  // Calculate the tip percentage (tip / 100) * bill
+  // Add tip percentage to bill to get total bill
+  //
+  // Output tip amount
+  // Output total bill amount
+  var bill;
+  var tip_percentage;
+  var tip;
+  var total_bill;
+
+  bill = parseFloat(prompt('What is the bill?'), 10);
+  tip_percentage = parseFloat(prompt('What is the tip percentage?'));
+
+  tip = (tip_percentage / 100) * bill;
+  total_bill = tip + bill;
+
+  console.log('The tip is $' + tip.toFixed(2));
+  console.log('The total is $' + total_bill.toFixed(2));
+  </script>
+  </head>
+<body>
+</body>
+</html>

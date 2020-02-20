@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Student Grade</title>
+  <script>
+  // Student Grade
+  // Write a program to determine a student’s grade based on the average of three scores you get from the user. Use these rules to compute the grade:
+  //
+  // If the average score is greater than or equal to 90 then the grade is 'A'
+  // If the average score is greater than or equal to 70 and less than 90 then the grade is 'B'
+  // If the average score is greater than or equal to 50 and less than 70 then the grade is 'C'
+  // If the average score is less than 50 then the grade is 'F'
+  // You may assume that all input values are valid positive integers.
+  //
+  // Example
+  // // prompts to get the 3 scores
+  // Enter score 1: 90
+  // Enter score 2: 50
+  // Enter score 3: 78
+  //
+  // // log to the console
+  // Based on the average of your 3 scores your letter grade is "B".
+
+  // Algorithm
+  // 0. Declare variable to hold letterGrade
+  // 1. Get grade 1
+  // 2. Get grade 2
+  // 3. Get grade 3
+  // 4. Determine average (grade1, grade2, grade3) / 3
+  // 5. Assign letterGrade to result of condition:
+  //   If average >= 90
+  //     "A"
+  //   Else if (average >= 70 && average < 90)
+  //     "B"
+  //   Else if (average >= 50 && average < 70)
+  //     "C"
+  //   else
+  //     "F"
+  //
+  // 6. Output to console the letterGrade
+
+  var letterGrade;
+
+  var grade1 = Number(prompt("Enter score 1: "));
+  var grade2 = Number(prompt("Enter score 2: "));
+  var grade3 = Number(prompt("Enter score 3: "));
+  var average = (grade1 + grade2 + grade3) / 3;
+
+  letterGrade = 'F'
+  if (average >= 90) {
+    letterGrade = 'A';
+  } else if (average >= 70) {
+    letterGrade = 'B';
+  } else if (average >= 50) {
+    letterGrade = 'C';
+  }
+
+  console.log('Based on the average of your 3 scores your letter grade is ' + letterGrade + '.');
+  </script>
+  </head>
+<body>
+</body>
+</html>

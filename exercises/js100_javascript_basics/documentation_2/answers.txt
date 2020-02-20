@@ -1,0 +1,49 @@
+1. Lines 1 and 2 need semi-colons at the end of each statement.
+
+Line 5's left bracket { should be on line 4.
+
+ice_cream_taste and ice_cream_density should use camelCase.
+
+On line 4, there should be a space between while keyword and expression.
+
+Sould be spaces on line 10 between string literal and concatenation operator (+).
+
+Indent with two spaces.
+
+let iceCreamTaste = 'chocolate';
+let iceCreamDensity = 10;
+
+while (iceCreamDensity > 0) {
+  console.log('Drip...');
+  iceCreamDensity -= 1;
+}
+
+console.log('The ' + iceCreamTaste + ' ice cream melted.');
+
+2.
+7 data types:
+string
+Number
+bigint
+Boolean
+null
+undefined
+symbol
+
+3. On the Data Structures page, look at number type. There is a constant Number.MAX_VALUE
+
+4. 20 + 9 / 10 = 20.9
+This is because each operator has a precedence. Exponentation has the highest precedence of the arithmetic operators, then is multiplication, division, and remainder, and then addition and subtraction.
+
+5. Date.now() returns the number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
+
+6. getYear() is deprecated. It returns only the last two/three digits of the year (current year - 1900). getFullYear() returns the full year.
+
+7. Array.prototype.join() expects zero or one arguments. If join is called with zero arguments, a string is returned with ',' between each element in the array. If more than one argument is called with join(), the extra arguments are ignored.
+
+8. We can use the addition operator: 'a' + 'b'. Also we can use String.prototype.concat()
+
+9. There aren't enough brackets on line 4. it should be instead:
+if ((currentSpeed > speedLimit) && ((currentSpeed - speedLimit) > 5))
+
+10. TypeError says: operation could not be performed typically when a value is not of the expected type. Array.length is not a function, it is a property.

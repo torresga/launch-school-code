@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>How Big is the Room?</title>
+  <script>
+    // How Big is the Room
+    // Build a program that asks a user for the length and width of a room in meters, and then logs to the console the area of the room in both square meters and square feet.
+    //
+    // Note: 1 square meter == 10.7639 square feet
+    //
+    // Do not worry about validating the input at this time. Use the prompt() function to collect user input.
+
+    // Input: two integers that represent the length and the width of a room in meters
+    // Output: The area of the room in square meters and square feet.
+
+    // Rules
+    // - don't worry about validating input
+    // - use prompt to collect input
+    //
+    // What is area? Length * width
+    // Length * width gives us area in square meters, area * 10.7639 will give us area in square feet.
+    //
+    // Input is a string, so we will have to use Number() or parseInt to convert to an integer.
+
+    // Algorithm
+    // Ask for the length of a room in meters
+    // Ask for the widgh of a room in meters
+    // Ask for the input type
+    // Convert length from a string to a number
+    // Convert width from a string to a number
+    // Calculate area in meters: length * width
+    // Calculate area in square feet: area * 10.7639
+    // Output area in meters
+    // Output area in square feet
+
+    var lengthOfRoom;
+    var widthOfRoom;
+    var inputType;
+    var area;
+    var METER_TO_SQUARE_FEET = 10.7639;
+
+    lengthOfRoom = parseInt(prompt('Enter the length of the room in meters:'), 10);
+    widthOfRoom = parseInt(prompt('Enter the width of the room in meters:'), 10);
+    inputType = prompt('Is this in square meters (m) or square feet (f)?');
+
+    if (inputType === 'm') {
+      area = lengthOfRoom * widthOfRoom;
+      console.log(`The area of the room is ${area.toFixed(2)} square meters.`);
+    } else if (inputType === 'f') {
+      area = (lengthOfRoom * widthOfRoom) * METER_TO_SQUARE_FEET;
+      console.log(`The area of the room is ${area.toFixed(2)} square feet.`);
+    } else {
+      console.log('I don\'t know that type.');
+    }
+
+    // Further Exploration
+    // Modify the program so that it asks the user for the input type (meters or feet). Compute for the area accordingly, and log it and its conversion in parentheses.
+  </script>
+  </head>
+<body>
+</body>
+</html>

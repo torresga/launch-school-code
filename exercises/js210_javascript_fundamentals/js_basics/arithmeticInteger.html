@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Arithmetic Integer</title>
+  <script>
+    // prompt always gets input as a string, so we have to convert those to a number
+    var number1 = Number(prompt('Enter the first number:'));
+    var number2 = Number(prompt('Enter the second number:'));
+
+    // if we don't convert the numbers to a string, + will concatenate the numbers together
+    console.log(number1 + ' + ' + number2 + ' = ' + (number1 + number2));
+    console.log(number1 + ' - ' + number2 + ' = ' + (number1 - number2));
+    console.log(number1 + ' * ' + number2 + ' = ' + (number1 * number2));
+    console.log(number1 + ' / ' + number2 + ' = ' + Math.floor(number1 / number2));
+    console.log(number1 + ' % ' + number2 + ' = ' + (number1 % number2));
+    console.log(number1 + ' ** ' + number2 + ' = ' + Math.pow(number1, number2));
+  </script>
+  </head>
+<body>
+</body>
+</html>

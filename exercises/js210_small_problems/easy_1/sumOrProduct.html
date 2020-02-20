@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Sum Or Product</title>
+  <script>
+  // Sum or Product of Consecutive Integers
+  // Write a program that asks the user to enter an integer greater than 0, then asks if the user wants to determine the sum or the product of all numbers between 1 and the entered integer, inclusive.
+  //
+  // Examples:
+  //
+  // Please enter an integer greater than 0: 5
+  // Enter "s" to compute the sum, or "p" to compute the product. s
+  //
+  // The sum of the integers between 1 and 5 is 15.
+  // Please enter an integer greater than 0: 6
+  // Enter "s" to compute the sum, or "p" to compute the product. p
+  //
+  // The product of the integers between 1 and 6 is 720.
+
+  // Input: An integer greater than 0, and a string representing whether the user wants to determine the sum or the product of all numbers between 1 and the entered integer inclusive.
+  // Output: An integer
+
+  // Rules
+  // - I suppose we don't need to validate Input
+
+  // Algorithm
+  // Ask user to enter an integer greater than 0
+  // Ask user to enter 's' or 'p' for the mathematical calculation
+  // If input is 's'
+  //  Calculate the Sum
+  //    Loop from 1 to integer
+  //    Add all the numbers together
+  //  Output the Sum
+  // Else if input is 'p'
+  //  Calculate the Product
+  //    Loop from 1 to integer
+  //    Multiply all the numbers together
+  //  Output the Product
+
+  var integer;
+  var calculationType;
+  var calculation;
+
+  integer = parseInt(prompt('Please enter an integer greater than 0:'), 10);
+  calculationType = prompt('Enter "s" to compute the sum, or "p" to compute the product.');
+
+  if (calculationType === 's') {
+    calculation = 0;
+
+    for (var i = 1; i <= integer; i += 1) {
+      calculation += i;
+    }
+
+    console.log('The sum of the integers between 1 and ' + String(integer) + ' is ' + calculation);
+  } else if (calculationType === 'p') {
+    calculation = 1;
+
+    for (var i = 1; i <= integer; i += 1) {
+      calculation *= i;
+    }
+
+    console.log('The product of all the integers between 1 and ' + String(integer) + ' is ' + calculation);
+  } else {
+    console.log('I don\'t know that calculation.');
+  }
+
+  </script>
+  </head>
+<body>
+</body>
+</html>
