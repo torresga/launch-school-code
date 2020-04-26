@@ -46,6 +46,8 @@ myValue(a) does not return anything since myValue() does not output anything to 
 
 Also, variable referenced by myValue(a) and console.log(a) refers to the a variable declared and assigned to 7 on line 1. The `a` variable used as a parameter inside the myValue function declaration is different from the variable on line 1. This code demonstrates the concept of variable shadowing.
 
+8. Line 8 will output [1, 2, 10] because arrays are mutaable. myValue mutates the array argument. b[2] += 7 reassigns the array argument's element at index 2 to a different reference - the primitive number 10
+
 9.
 Output:
 undefined
