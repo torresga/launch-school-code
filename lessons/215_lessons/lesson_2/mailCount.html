@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <script src="https://dbdwvr6p7sskw.cloudfront.net/210/files/email_data_v2.js"></script>
+  <script>
+  // Build a function that parses a string of email data.
+
+  // Input: A string
+  // Output: The number of email addresses in the string and the date range of the email addresses
+
+  // Email messages string:
+  // - Multiple email messages separated by ##||##
+  // - #/# separates the parts of the email message
+  // - Each email has 5 parts:
+  //   - Sender
+  //   - Subject
+  //   - date
+  //   - recipient
+  //   - body
+
+//   We want to convert email messages from a string to a nested array like so:
+//
+// [
+//   [sender, subject, date, recipient, body],
+//   [sender, subject, date, recipient, body],
+//   [sender, subject, date, recipient, body],
+//   [sender, subject, date, recipient, body],
+//   [sender, subject, date, recipient, body]
+// ]
+
+// From there, we can filter date and get count
+
+// Algorithm
+// 1. Split text on ##||##
+// 2. Map array: split each line on #/#
+// 3. Count of emails: length of array
+// 4. Filter array to get dates of each email
+//   To get date: use a regex to find all elements starting with date
+// 5. Map dates array:
+//   Turn each date into a date object
+// 6. Sort dates from oldest to newest
+// 7. Output count of emails, and date range from oldest to newest
+
+  function mailCount(emailData) {
+    let emails = emailData.split('##||##').map(function(email) {
+      return email.split('#/#');
+    });
+
+    let count = emails.length;
+    let dates = emails.flatMap(function(email) {
+      return email.filter(function(elem) {
+        return /Date/.test(elem);
+      });
+    }).map(function(date) {
+      let newDate = date.replace('Date: ', '');
+      return new Date(newDate);
+    }).sort(function(date1, date2) {
+      if (date1 < date2) {
+        return -1;
+      }
+
+      if (date1 > date2) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    console.log(`Count of Email: ${count}`);
+    console.log(`Date Range: ${dates[0].toDateString()} - ${dates[dates.length - 1].toDateString()}`);
+  }
+
+  mailCount(emailData);
+
+  // console output
+  // Count of Email: 5
+  // Date Range: Sat Jun 25 2016 - Thu Aug 11 2016
+  </script>
+  </head>
+
+  <body>
+  </body>
+</html>
